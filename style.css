@@ -1,20 +1,60 @@
+body {
+  align-items: center;
+}
+
+#result {
+  display    : flex;
+  align-items: center;
+  height     : 80%;
+  margin     : auto;
+}
+
+h3 {
+  display   : flex;
+  text-align: center;
+  height    : 80%;
+  margin    : auto;
+}
+
 .grid {
+
+  height   : 80%;
   display  : flex;
   flex-wrap: wrap;
-  width    : 400px;
-  height   : 30px;
+  margin   : auto;
+  width    : 80%;
+  padding  : 10px;
+}
+
+.back {
+  width : 120px;
+  height: 80px;
 }
 
 .matched {
-  border: 2px solid green !important;
+  /* border: 2px solid green !important;
+  background-color: greenyellow; */
+  background   : #44C267;
+  border       : 28px groove #E0DA28;
+  border-radius: 41px 41px 41px 41px;
+  transition   : 0s linear;
 
 }
 
 .card {
-  border       : 2px solid rgba(224, 147, 3, 0.733);
-  width        : 120px;
-  height       : 80px;
-  text-overflow: ellipsis;
-  text-align   : center;
-  padding      : 5px;
+  border          : 2px solid rgba(224, 147, 3, 0.733);
+  width           : 120px;
+  height          : 80px;
+  /* overflow-wrap: break-word;
+ hyphens          : manual;
+  word-break      : break-all;
+  overflow-wrap   : break-word; */
+  text-overflow   : ellipsis;
+  text-align      : center;
+  padding         : 2px;
+  cursor          : pointer;
+}
+
+p {
+  word-wrap: break-word;
 }
