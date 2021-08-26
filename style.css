@@ -1,29 +1,45 @@
 body {
-  align-items: center;
+  background-image     : linear-gradient(rgba(0, 0, 0, 10), rgba(0, 0, 0, 0.5)), url("images/bible.jpg");
+  background-repeat    : no-repeat;
+  background-attachment: fixed;
+  background-position  : center;
+  background-size      : cover;
+  background-blend-mode: darken;
+  padding              : 1px;
 }
 
 #result {
-  display    : flex;
-  align-items: center;
-  height     : 80%;
-  margin     : auto;
+  color: white;
+
 }
 
 h3 {
-  display   : flex;
-  text-align: center;
-  height    : 80%;
-  margin    : auto;
+  display: flex;
+  color  : white;
+  height : 80%;
+  margin : auto;
+}
+
+
+.text {
+
+  color        : white;
+  text-overflow: ellipsis;
+  font-family  : cursive;
+  max-width    : 110px;
+  max-height   : 50px;
+
 }
 
 .grid {
 
-  height   : 80%;
+
   display  : flex;
   flex-wrap: wrap;
   margin   : auto;
-  width    : 80%;
-  padding  : 10px;
+  width    : 400px;
+  height   : 80%;
+  padding  : 1px;
 }
 
 .back {
@@ -32,17 +48,15 @@ h3 {
 }
 
 .matched {
-  /* border: 2px solid green !important;
-  background-color: greenyellow; */
-  background   : #44C267;
-  border       : 28px groove #E0DA28;
-  border-radius: 41px 41px 41px 41px;
-  transition   : 0s linear;
+  background-color: rgba(123, 192, 19, 0.315) !important;
+  background      : #18d34dcc;
+  border          : 10px;
+  transition      : 0s linear;
 
 }
 
 .card {
-  border          : 2px solid rgba(224, 147, 3, 0.733);
+
   width           : 120px;
   height          : 80px;
   /* overflow-wrap: break-word;
@@ -51,8 +65,9 @@ h3 {
   overflow-wrap   : break-word; */
   text-overflow   : ellipsis;
   text-align      : center;
-  padding         : 2px;
+  padding         : 1px;
   cursor          : pointer;
+
 }
 
 p {

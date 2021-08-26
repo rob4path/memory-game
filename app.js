@@ -18,50 +18,35 @@ document.addEventListener('DOMContentLoaded', () => {
       text: 'Daca ne marturisim pacatele El este credincios si drept ca sa ne ierte toate pacatele si sa ne ierte de orice nelegiuire'
     },
     {
-      reference: '1 Ioan 2:6',
-      text: '1 Ioan 2: 6'
+      reference: 'Ps. 143:8',
+      text: 'Ps. 143:8'
     },
     {
-      reference: '1 Ioan 2:6',
-      text: 'Cine zice ca ramane in El...'
+      reference: 'Ps. 143:8',
+      text: 'Fă-mă să aud dis-de-dimineaţă bunătatea Ta, căci mă încred în Tine. Arată-mi calea pe care trebuie să umblu, căci la Tine îmi înalţ sufletul.'
     },
     {
-      reference: '1 Ioan 1:9',
-      text: '1 Ioan 1:9'
+      reference: 'Romani 4:20',
+      text: 'Romani 4:20'
     },
     {
-      reference: '1 Ioan 1:9',
+      reference: 'Romani 4:20',
       text: 'Daca ne marturisim pacatele El este credincios si drept ca sa ne ierte toate pacatele si sa ne ierte de orice nelegiuire'
     }, {
-      reference: '1 Ioan 2:6',
-      text: '1 Ioan 2: 6'
+      reference: 'Ioan 15:7',
+      text: 'Ioan 15:7'
     },
     {
-      reference: '1 Ioan 2:6',
-      text: 'Cine zice ca ramane in El...'
+      reference: 'Ioan 15:7',
+      text: 'Dacă rămâneţi în Mine şi dacă rămân în voi cuvintele Mele, cereţi orice veţi vrea, şi vi se va da.'
     },
     {
-      reference: '1 Ioan 1:9',
-      text: '1 Ioan 1:9'
+      reference: '1 Timotei 4:15',
+      text: '1 Timotei 4:15'
     },
     {
-      reference: '1 Ioan 1:9',
-      text: 'Daca ne marturisim pacatele El este credincios si drept ca sa ne ierte toate pacatele si sa ne ierte de orice nelegiuire'
-    }, {
-      reference: '1 Ioan 2:6',
-      text: '1 Ioan 2: 6'
-    },
-    {
-      reference: '1 Ioan 2:6',
-      text: 'Cine zice ca ramane in El...'
-    },
-    {
-      reference: '1 Ioan 1:9',
-      text: '1 Ioan 1:9'
-    },
-    {
-      reference: '1 Ioan 1:9',
-      text: 'Daca ne marturisim pacatele El este credincios si drept ca sa ne ierte toate pacatele si sa ne ierte de orice nelegiuire'
+      reference: '1 Timotei 4:15',
+      text: 'Pune-ţi pe inimă aceste lucruri, îndeletniceşte-te în totul cu ele, pentru ca înaintarea ta să fie văzută de toţi.'
     },
   ]
 
@@ -81,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const text = document.createElement('p')
       card.className = 'card '
       image.className = 'back '
-      image.setAttribute('src', "images/ice-cream.png")
+      text.className = 'text '
+      image.setAttribute('src', "images/bibleHand.jpg")
       text.innerText = cardArray[i].text
       card.appendChild(image)
       card.appendChild(text)
