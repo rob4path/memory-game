@@ -1,6 +1,20 @@
 .grid {
-  display: flex;
+  display  : flex;
   flex-wrap: wrap;
-  width: 400px;
-  height: 300px;
+  width    : 400px;
+  height   : 30px;
+}
+
+.matched {
+  border: 2px solid green !important;
+
+}
+
+.card {
+  border       : 2px solid rgba(224, 147, 3, 0.733);
+  width        : 120px;
+  height       : 80px;
+  text-overflow: ellipsis;
+  text-align   : center;
+  padding      : 5px;
 }
