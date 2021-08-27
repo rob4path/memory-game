@@ -26,14 +26,11 @@ h3 {
   color        : white;
   text-overflow: ellipsis;
   font-family  : cursive;
-  max-width    : 110px;
-  max-height   : 50px;
+
 
 }
 
 .grid {
-
-
   display  : flex;
   flex-wrap: wrap;
   margin   : auto;
@@ -52,21 +49,23 @@ h3 {
   background      : #18d34dcc;
   border          : 10px;
   transition      : 0s linear;
+  padding         : 5px;
 
 }
 
 .card {
 
-  width           : 120px;
-  height          : 80px;
-  /* overflow-wrap: break-word;
- hyphens          : manual;
-  word-break      : break-all;
-  overflow-wrap   : break-word; */
-  text-overflow   : ellipsis;
-  text-align      : center;
-  padding         : 1px;
-  cursor          : pointer;
+  width          : 120px;
+  height         : 80px;
+  overflow-wrap  : break-word;
+  hyphens        : manual;
+  word-break     : break-all;
+  overflow-wrap  : break-word;
+  text-overflow  : ellipsis;
+  text-align     : center;
+  text-align-last: auto;
+  padding        : 1px;
+  cursor         : pointer;
 
 }
 

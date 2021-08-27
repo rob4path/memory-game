@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const cardArray = [
     {
       reference: '1 Ioan 2:6',
-      text: '1 Ioan 2: 6'
+      text: '1 Ioan 2:6'
     },
     {
       reference: '1 Ioan 2:6',
-      text: 'Cine zice ca ramane in El...'
+      text: 'Cine zice că rămâne în El trebuie să trăiască și el cum a trăit Isus'
     },
     {
       reference: '1 Ioan 1:9',
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       reference: 'Romani 4:20',
-      text: 'Daca ne marturisim pacatele El este credincios si drept ca sa ne ierte toate pacatele si sa ne ierte de orice nelegiuire'
+      text: 'El nu s-a îndoit de făgăduinţa lui Dumnezeu, prin necredinţă, ci, întărit prin credinţa lui, a dat slavă lui Dumnezeu,'
     }, {
       reference: 'Ioan 15:7',
       text: 'Ioan 15:7'
@@ -181,4 +181,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   createBoard()
+  // prompt('Versetele de la FAST, M2')
 })
