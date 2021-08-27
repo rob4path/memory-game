@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('addVerseBtn')
+  btn.addEventListener('click', addVerse)
+  const chooseFastBtn = document.getElementById('chooseFast')
+  chooseFastBtn.addEventListener('click', chooseFast)
+  const chooseProverbsBtn = document.getElementById('chooseProverbs')
+  chooseProverbsBtn.addEventListener('click', chooseProverbs)
+  const chooseMoreBtn = document.getElementById('chooseMore')
+  chooseMoreBtn.addEventListener('click', chooseMore)
 
-  const cardArrayProverbs = []
-  const cardArrayPsalms = []
-  const cardArrayFAST = []
-  let cardArray = cardArrayFAST
-  //card options
-  cardArray = [
+  const cardArrayProverbs = [
     {
       reference: '1 Ioan 2:6',
       text: '1 Ioan 2:6'
@@ -21,51 +24,103 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       reference: '1 Ioan 1:9',
       text: 'Daca ne marturisim pacatele El este credincios si drept ca sa ne ierte toate pacatele si sa ne ierte de orice nelegiuire'
-    },
-    // {
-    //   reference: 'Ps. 143:8',
-    //   text: 'Ps. 143:8'
-    // },
-    // {
-    //   reference: 'Ps. 143:8',
-    //   text: 'Fă-mă să aud dis-de-dimineaţă bunătatea Ta, căci mă încred în Tine. Arată-mi calea pe care trebuie să umblu, căci la Tine îmi înalţ sufletul.'
-    // },
-    // {
-    //   reference: 'Romani 4:20',
-    //   text: 'Romani 4:20'
-    // },
-    // {
-    //   reference: 'Romani 4:20',
-    //   text: 'El nu s-a îndoit de făgăduinţa lui Dumnezeu, prin necredinţă, ci, întărit prin credinţa lui, a dat slavă lui Dumnezeu,'
-    // }, {
-    //   reference: 'Ioan 15:7',
-    //   text: 'Ioan 15:7'
-    // },
-    // {
-    //   reference: 'Ioan 15:7',
-    //   text: 'Dacă rămâneţi în Mine şi dacă rămân în voi cuvintele Mele, cereţi orice veţi vrea, şi vi se va da.'
-    // },
-    // {
-    //   reference: '1 Timotei 4:15',
-    //   text: '1 Timotei 4:15'
-    // },
-    // {
-    //   reference: '1 Timotei 4:15',
-    //   text: 'Pune-ţi pe inimă aceste lucruri, îndeletniceşte-te în totul cu ele, pentru ca înaintarea ta să fie văzută de toţi.'
-    // },
+    }
   ]
+  const cardArrayMore = [
+    {
+      reference: '1 Ioan 2:6',
+      text: '1 Ioan 2:6'
+    },
+    {
+      reference: '1 Ioan 2:6',
+      text: 'Cine zice că rămâne în El trebuie să trăiască și el cum a trăit Isus'
+    },
+    {
+      reference: '1 Ioan 1:9',
+      text: '1 Ioan 1:9'
+    },
+    {
+      reference: '1 Ioan 1:9',
+      text: 'Daca ne marturisim pacatele El este credincios si drept ca sa ne ierte toate pacatele si sa ne ierte de orice nelegiuire'
+    }
+  ]
+  const cardArrayFAST = [
+    {
+      reference: 'Ps. 143:8',
+      text: 'Ps. 143:8'
+    },
+    {
+      reference: 'Ps. 143:8',
+      text: 'Fă-mă să aud dis-de-dimineaţă bunătatea Ta, căci mă încred în Tine. Arată-mi calea pe care trebuie să umblu, căci la Tine îmi înalţ sufletul.'
+    },
+    {
+      reference: 'Romani 4:20',
+      text: 'Romani 4:20'
+    },
+    {
+      reference: 'Romani 4:20',
+      text: 'El nu s-a îndoit de făgăduinţa lui Dumnezeu, prin necredinţă, ci, întărit prin credinţa lui, a dat slavă lui Dumnezeu,'
+    }, {
+      reference: 'Ioan 15:7',
+      text: 'Ioan 15:7'
+    },
+    {
+      reference: 'Ioan 15:7',
+      text: 'Dacă rămâneţi în Mine şi dacă rămân în voi cuvintele Mele, cereţi orice veţi vrea, şi vi se va da.'
+    },
+    {
+      reference: '1 Timotei 4:15',
+      text: '1 Timotei 4:15'
+    },
+    {
+      reference: '1 Timotei 4:15',
+      text: 'Pune-ţi pe inimă aceste lucruri, îndeletniceşte-te în totul cu ele, pentru ca înaintarea ta să fie văzută de toţi.'
+    },
+  ]
+
+  //card options
+  cardArray = []
 
   function chooseProverbs() {
 
     cardArray = cardArrayProverbs
+    createBoard()
   }
 
-  function choosePsalms() {
+  function chooseMore() {
 
-    cardArray = cardArrayPsalms
+    cardArray = cardArrayMore
+    createBoard()
   }
 
+  function chooseFast() {
 
+    cardArray = cardArrayFAST
+    createBoard()
+    cardArray.sort(() => 0.5 - Math.random())
+  }
+
+  function addVerse() {
+    const takeReference = document.getElementById('reference').value
+    const takeText = document.getElementById('text').value
+
+    const newReference = {
+      reference: takeReference,
+      text: takeReference
+
+    }
+    const newVerse = {
+      reference: takeReference,
+      text: takeText
+    }
+    cardArray.push(newReference)
+    cardArray.push(newVerse)
+    console.log(addVerse)
+    console.log(cardArray)
+
+    createBoard()
+
+  }
 
   // create a function that takes the value from 2 input elements (created in index.html)
   // const takeReference = document.get...
@@ -78,8 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // const newVerse = {
   //   reference: takeReference,
   //   text: takeText
-
   // }
+
   // push the two objects into cardArray (cardArray.push(newVerse))
   //  create a button in HTML that calls this function on click
 
@@ -105,11 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
       card.appendChild(image)
       card.appendChild(text)
       text.style.display = 'none'
-
-      // create an HTML element for the image, with class 'back', with (set attrbute) src = '/path/to/image.jpg'
-      // create an HTML elem for the text, with class 'front', with innerText = cardArray[i].text
-      // append both of them to the card div
-      // set the display of the p to none
 
       card.setAttribute('data-id', i)
       card.addEventListener('click', flipCard)
@@ -157,17 +207,17 @@ document.addEventListener('DOMContentLoaded', () => {
       pOptionOne.style.display = 'none'
       imgOptionTwo.style.display = 'block'
       pOptionTwo.style.display = 'none'
-      // do the same thing as if clicked the same card twice
-      // cards[optionTwoId].setAttribute('src', 'images/blank.png')
+
       // alert('Sorry, try again')
     }
     cardsChosen = []
     cardsChosenId = []
     resultDisplay.textContent = cardsWon.length
-    if (cardsWon.length === cardArray.length / 2) {
+    if (cardsWon.length === 10) {
       resultDisplay.textContent = 'Congratulations! You found them all!'
       const refresh = document.createElement('button')
       refresh.className = 'refresh-btn'
+      refresh.id = 'refresh-btn'
       refresh.innerText = 'refresh'
       refresh.addEventListener('click', updateBoard)
       const fresh = document.getElementsByClassName('main')[0]
@@ -218,6 +268,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       cards[i].addEventListener('click', flipCard)
 
+      // document.getElementById('refresh-btn').style.display = 'none'
+      // it works but it creates another btn with the same id
+
       // TODO clear button
       // delete congrats
 
@@ -249,6 +302,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  createBoard()
+
   // prompt('Versetele de la FAST, M2')
 })

@@ -12,6 +12,22 @@
 
 <body>
   <div class="main">
+    <h2 style="color: white;">Create board for:</h2>
+    <input type="button" id='chooseFast' value="FAST">
+
+    <input type="button" id='chooseProverbs' value="Proverbs">
+
+    <input type="button" id='chooseMore' value="More">
+    <br>
+    <br>
+    <input id='reference' type="text" placeholder="Reference">
+    <br>
+    <input id='text' type="text" placeholder="Text">
+    <br>
+    <input type="button" id='addVerseBtn' value="Add verse">
+    <br>
+    <input type="button" id='createBoardBtn' onclick="createBoard()" value="Create Board">
+
     <h3>Score:<span id="result"></span></h3>
   </div>
   <div id="grid" class="grid">
