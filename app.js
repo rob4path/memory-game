@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+  const cardArrayProverbs = []
+  const cardArrayPsalms = []
+  const cardArrayFAST = []
+  let cardArray = cardArrayFAST
   //card options
-  const cardArray = [
+  cardArray = [
     {
       reference: '1 Ioan 2:6',
       text: '1 Ioan 2:6'
@@ -17,38 +22,66 @@ document.addEventListener('DOMContentLoaded', () => {
       reference: '1 Ioan 1:9',
       text: 'Daca ne marturisim pacatele El este credincios si drept ca sa ne ierte toate pacatele si sa ne ierte de orice nelegiuire'
     },
-    {
-      reference: 'Ps. 143:8',
-      text: 'Ps. 143:8'
-    },
-    {
-      reference: 'Ps. 143:8',
-      text: 'Fă-mă să aud dis-de-dimineaţă bunătatea Ta, căci mă încred în Tine. Arată-mi calea pe care trebuie să umblu, căci la Tine îmi înalţ sufletul.'
-    },
-    {
-      reference: 'Romani 4:20',
-      text: 'Romani 4:20'
-    },
-    {
-      reference: 'Romani 4:20',
-      text: 'El nu s-a îndoit de făgăduinţa lui Dumnezeu, prin necredinţă, ci, întărit prin credinţa lui, a dat slavă lui Dumnezeu,'
-    }, {
-      reference: 'Ioan 15:7',
-      text: 'Ioan 15:7'
-    },
-    {
-      reference: 'Ioan 15:7',
-      text: 'Dacă rămâneţi în Mine şi dacă rămân în voi cuvintele Mele, cereţi orice veţi vrea, şi vi se va da.'
-    },
-    {
-      reference: '1 Timotei 4:15',
-      text: '1 Timotei 4:15'
-    },
-    {
-      reference: '1 Timotei 4:15',
-      text: 'Pune-ţi pe inimă aceste lucruri, îndeletniceşte-te în totul cu ele, pentru ca înaintarea ta să fie văzută de toţi.'
-    },
+    // {
+    //   reference: 'Ps. 143:8',
+    //   text: 'Ps. 143:8'
+    // },
+    // {
+    //   reference: 'Ps. 143:8',
+    //   text: 'Fă-mă să aud dis-de-dimineaţă bunătatea Ta, căci mă încred în Tine. Arată-mi calea pe care trebuie să umblu, căci la Tine îmi înalţ sufletul.'
+    // },
+    // {
+    //   reference: 'Romani 4:20',
+    //   text: 'Romani 4:20'
+    // },
+    // {
+    //   reference: 'Romani 4:20',
+    //   text: 'El nu s-a îndoit de făgăduinţa lui Dumnezeu, prin necredinţă, ci, întărit prin credinţa lui, a dat slavă lui Dumnezeu,'
+    // }, {
+    //   reference: 'Ioan 15:7',
+    //   text: 'Ioan 15:7'
+    // },
+    // {
+    //   reference: 'Ioan 15:7',
+    //   text: 'Dacă rămâneţi în Mine şi dacă rămân în voi cuvintele Mele, cereţi orice veţi vrea, şi vi se va da.'
+    // },
+    // {
+    //   reference: '1 Timotei 4:15',
+    //   text: '1 Timotei 4:15'
+    // },
+    // {
+    //   reference: '1 Timotei 4:15',
+    //   text: 'Pune-ţi pe inimă aceste lucruri, îndeletniceşte-te în totul cu ele, pentru ca înaintarea ta să fie văzută de toţi.'
+    // },
   ]
+
+  function chooseProverbs() {
+
+    cardArray = cardArrayProverbs
+  }
+
+  function choosePsalms() {
+
+    cardArray = cardArrayPsalms
+  }
+
+
+
+  // create a function that takes the value from 2 input elements (created in index.html)
+  // const takeReference = document.get...
+  // and creates
+  // const newReference = {
+  //   reference: takeReference,
+  //   text: takeReference
+
+  // }
+  // const newVerse = {
+  //   reference: takeReference,
+  //   text: takeText
+
+  // }
+  // push the two objects into cardArray (cardArray.push(newVerse))
+  //  create a button in HTML that calls this function on click
 
   cardArray.sort(() => 0.5 - Math.random())
 
@@ -90,7 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const optionOneId = cardsChosenId[0]
     const optionTwoId = cardsChosenId[1]
 
-    if (optionOneId == optionTwoId) { // alert('You have clicked the same image!')
+    // alert('You have clicked the same image!')
+    if (optionOneId == optionTwoId) {
 
       // get the img and the p with cards[optionOneId].childNodes[0] and cards[optionOneId].childNodes[1] 
       imgOptionOne = cards[optionOneId].childNodes[0]
@@ -113,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cards[optionOneId].removeEventListener('click', flipCard)
       cards[optionTwoId].removeEventListener('click', flipCard)
       cardsWon.push(cardsChosen)
+
     } else {
       imgOptionOne = cards[optionOneId].childNodes[0]
       pOptionOne = cards[optionOneId].childNodes[1]
@@ -131,38 +166,72 @@ document.addEventListener('DOMContentLoaded', () => {
     resultDisplay.textContent = cardsWon.length
     if (cardsWon.length === cardArray.length / 2) {
       resultDisplay.textContent = 'Congratulations! You found them all!'
-      // const refresh = document.createElement('button')
-      // refresh.className = 'refresh-btn'
-      // refresh.innerText = 'refresh'
-      // refresh.addEventListener('click', shuffleCards)
-      // const fresh = document.getElementsByClassName('main')[0]
+      const refresh = document.createElement('button')
+      refresh.className = 'refresh-btn'
+      refresh.innerText = 'refresh'
+      refresh.addEventListener('click', updateBoard)
+      const fresh = document.getElementsByClassName('main')[0]
 
-      // fresh.appendChild(refresh)
+      fresh.appendChild(refresh)
     }
   }
 
-  function shuffleCards() {
-    cardArray.sort(() => 0.5 - Math.random())
-    // create function updateBoard()
-    // which will get all the p elements, and will update their inner text
-    // to be the new one from the shuffled cardArray
+  // function shuffleCards() {
+  //   cardArray.sort(() => 0.5 - Math.random())
+  //   // create function updateBoard()
+  //   // which will get all the p elements, and will update their inner text
+  //   // to be the new one from the shuffled cardArray
 
-    // const cards = get by class name ("card")
-    // for (...) {
-    // cards[i].className.replace("matched", "")
-    // const text = cards[i].childNodes[1]
-    // same for img
-    // text.innerText = cardsArray[i].text
+  //   // const cards = get by class name ("card")
+  //   // for (...) {
+  //   // cards[i].className.replace("matched", "")
+  //   // const text = cards[i].childNodes[1]
+  //   // same for img
+  //   // text.innerText = cardsArray[i].text
 
-    // turn over the cards by setting display properties accordingly
-    // text.style.display = "none"
-    // set display of img to block
-    //}
+  //   // turn over the cards by setting display properties accordingly
+  //   // text.style.display = "none"
+  //   // set display of img to block
+  //   //}
 
 
-    // remove matched class from all cards
+  //   // remove matched class from all cards
 
+  // }
+  function updateBoard() {
+    let getPs = document.getElementsByTagName('p')
+
+    const cards = document.getElementsByClassName("card")
+
+    for (let i = 0; i < cardArray.length; i++) {
+
+      cards[i].className = cards[i].className.replace('matched', '')
+
+      const text = cards[i].childNodes[1]
+      const img = cards[i].childNodes[0]
+      text.innerText = cardArray[i].text
+
+      img.style.display = "block"
+      text.style.display = "none"
+
+      cardsWon = []
+
+      cards[i].addEventListener('click', flipCard)
+
+      // TODO clear button
+      // delete congrats
+
+      // css
+      // text too big = ...
+      // card over
+
+      // let removeClass = document.getElementById('grid')
+      // removeClass.classList.remove('matched')
+
+
+    }
   }
+
 
   //flip your card
   function flipCard() {

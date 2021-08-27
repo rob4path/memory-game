@@ -57,10 +57,7 @@ h3 {
 
   width          : 120px;
   height         : 80px;
-  overflow-wrap  : break-word;
-  hyphens        : manual;
-  word-break     : break-all;
-  overflow-wrap  : break-word;
+  overflow       : hidden;
   text-overflow  : ellipsis;
   text-align     : center;
   text-align-last: auto;
