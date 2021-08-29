@@ -1,12 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.getElementById('addVerseBtn')
   btn.addEventListener('click', addVerse)
+
   const chooseFastBtn = document.getElementById('chooseFast')
   chooseFastBtn.addEventListener('click', chooseFast)
+
   const chooseProverbsBtn = document.getElementById('chooseProverbs')
   chooseProverbsBtn.addEventListener('click', chooseProverbs)
+
   const chooseMoreBtn = document.getElementById('chooseMore')
   chooseMoreBtn.addEventListener('click', chooseMore)
+
+
 
   const cardArrayProverbs = [
     {
@@ -78,6 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   ]
 
+  cardArray = cardArrayFAST
+
   //card options
   cardArray = []
 
@@ -97,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cardArray = cardArrayFAST
     createBoard()
-    cardArray.sort(() => 0.5 - Math.random())
+    // cardArray.sort(() => 0.5 - Math.random())
   }
 
   function addVerse() {
@@ -213,16 +220,15 @@ document.addEventListener('DOMContentLoaded', () => {
     cardsChosen = []
     cardsChosenId = []
     resultDisplay.textContent = cardsWon.length
-    if (cardsWon.length === 10) {
+    if (cardsWon.length === cardArray.length / 2) {
       resultDisplay.textContent = 'Congratulations! You found them all!'
-      const refresh = document.createElement('button')
-      refresh.className = 'refresh-btn'
-      refresh.id = 'refresh-btn'
-      refresh.innerText = 'refresh'
+      const refresh = document.getElementById('refresh-btn')
+      // refresh.className = 'refresh-btn'
+      // refresh.style.display = 'block'
       refresh.addEventListener('click', updateBoard)
-      const fresh = document.getElementsByClassName('main')[0]
+      // const fresh = document.getElementsByClassName('main')[0]
 
-      fresh.appendChild(refresh)
+      // fresh.appendChild(refresh)
     }
   }
 
