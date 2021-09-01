@@ -11,8 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const chooseMoreBtn = document.getElementById("chooseMore");
   chooseMoreBtn.addEventListener("click", chooseMore);
 
-  
-
   const cardArrayProverbs = [
     {
       reference: "1 Ioan 2:6",
@@ -128,10 +126,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const grid = document.querySelector(".grid");
-  const resultDisplay = document.querySelector("#result");
+  // const resultDisplay = document.querySelector("#result");
+  const resultDisplayPlayer1 = document.querySelector("#resultPlayer1");
+  const resultDisplayPlayer2 = document.querySelector("#resultPlayer2");
+
   let cardsChosen = [];
   let cardsChosenId = [];
   let cardsWon = [];
+  let cardsWonPlayer1 = [];
+  let cardsWonPlayer2 = [];
+
+  let playerTurn = "playerOne";
+  let cardsFlipped = 0;
 
   //create your board
   function createBoard() {
@@ -182,7 +188,14 @@ document.addEventListener("DOMContentLoaded", () => {
       cards[optionTwoId].className += "matched ";
       cards[optionOneId].removeEventListener("click", flipCard);
       cards[optionTwoId].removeEventListener("click", flipCard);
-      cardsWon.push(cardsChosen);
+
+      if (playerTurn === "playerOne") {
+        cardsWonPlayer1.push(cardsChosen);
+      } else {
+        cardsWonPlayer2.push(cardsChosen);
+      }
+
+      // cardsWon.push(cardsChosen);
     } else {
       imgOptionOne = cards[optionOneId].childNodes[0];
       pOptionOne = cards[optionOneId].childNodes[1];
@@ -197,9 +210,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     cardsChosen = [];
     cardsChosenId = [];
-    resultDisplay.textContent = cardsWon.length;
-    if (cardsWon.length === cardArray.length / 2) {
-      resultDisplay.textContent = "Congratulations! You found them all!";
+
+    if (playerTurn === "playerOne") {
+      resultDisplayPlayer1.textContent = cardsWonPlayer1.length;
+    } else {
+      resultDisplayPlayer2.textContent = cardsWonPlayer2.length;
+    }
+
+    // resultDisplay.textContent = cardsWon.length;
+
+    if (
+      cardsWonPlayer1.length + cardsWonPlayer2.length ===
+      cardArray.length / 2
+    ) {
+      if (cardsWonPlayer1.length > cardsWonPlayer2.length) {
+        resultDisplayPlayer1.textContent =
+          "Congratulations, Player 1! You found them all!";
+      } else {
+        resultDisplayPlayer2.textContent =
+          "Congratulations, Player 2! You found them all!";
+      }
+      // resultDisplay.textContent = "Congratulations! You found them all!";
+
       const refresh = document.getElementById("refresh-btn");
       // refresh.className = 'refresh-btn'
       // refresh.style.display = 'block'
@@ -253,6 +285,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //flip your card
   function flipCard() {
+    cardsFlipped++;
+
+    if (cardsFlipped === 3) {
+      if (playerTurn === "playerOne") {
+        playerTurn = "playerTwo";
+        document.getElementById("playerTurn").innerText = "Player 2";
+      } else {
+        playerTurn = "playerOne";
+        document.getElementById("playerTurn").innerText = "Player 1";
+      }
+
+      cardsFlipped = 1;
+    }
+
     if (cardsChosen.length > 1) {
       return;
     }
@@ -266,7 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
     text.style.display = "block";
     // set the display of the img to none and of the p to block
     if (cardsChosen.length === 2) {
-      setTimeout(checkForMatch, 500);
+      setTimeout(checkForMatch, 900);
     }
   }
   createBoard();
