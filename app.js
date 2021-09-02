@@ -1,3 +1,6 @@
+function refresh() {
+  location.reload();
+}
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("addVerseBtn");
   btn.addEventListener("click", addVerse);
@@ -225,10 +228,10 @@ document.addEventListener("DOMContentLoaded", () => {
       cardArray.length / 2
     ) {
       if (cardsWonPlayer1.length > cardsWonPlayer2.length) {
-        congrats.textContent = "Congratulations, Player 1! You found them all!";
+        congrats.textContent = "Congratulations, Player 1!";
       }
       if (cardsWonPlayer1.length < cardsWonPlayer2.length) {
-        congrats.textContent = "Congratulations, Player 2! You found them all!";
+        congrats.textContent = "Congratulations, Player 2!";
       }
       if (cardsWonPlayer1.length === cardsWonPlayer2.length) {
         congrats.textContent = "Congratulations, both!";
@@ -275,16 +278,12 @@ document.addEventListener("DOMContentLoaded", () => {
       // it works but it creates another btn with the same id
 
       // TODO clear button
-      // delete congrats
+
       // add options for adding text adn ref to different variables
-      // put congrat in other span
 
       // css
       // text too big = ...
       // card over
-
-      // let removeClass = document.getElementById('grid')
-      // removeClass.classList.remove('matched')
     }
   }
 

@@ -12,17 +12,27 @@
 
 <body>
   <div class="main">
-    <h2>Create board for:</h2>
-    <input type="button" id='chooseFast' value="FAST">
+   
+    <div class="container">
+    <input type="button" class="btn btn1" id='chooseFast' value="FAST">
 
-    <input type="button" id='chooseProverbs' value="Proverbs">
+    <input type="button" class="btn btn2" id='chooseProverbs' value="Proverbs">
 
-    <input type="button" id='chooseMore' value="More">
+    <input type="button" class="btn btn3" id='chooseMore' value="More">
+     <input type="button" class="btn btn4" onclick="refresh()" value="Refresh">
+    </div>
     <br>
     <br>
     <input id='reference' type="text" placeholder="Reference">
     <br>
     <input id='text' type="text" placeholder="Text">
+    <br>
+    <select id="setOption" name="cars">
+            <option id="fastOption" value="Male">FAST</option>
+            <option id="proverbsOption" value="Female">Proverbs</option>
+            <option id="mySet1Option" value="Male">MySet1</option>
+            <option id="mySet2Option" value="Female">MySet2</option>
+    </select>
     <br>
     <input type="button" id='addVerseBtn' value="Add verse">
     <br> 
@@ -37,8 +47,8 @@
   </div>
   <div id="grid" class="grid">
   </div>
-  <input type="button" id='refresh-btn' value="Refresh"
-
+  <!-- <input type="button" id='refresh-btn' value="Refresh"> -->
+ 
 </body>
 
 </html>
