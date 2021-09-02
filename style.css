@@ -12,12 +12,26 @@ body {
 #result {
   color: white;
 }
+/* TEXTs & FONTs */
+.main {
+  color: white;
+}
 
 #chooseFast {
+left: 50%;
+}
+#chooseMore {
+  left: 56%;
+}
+#chooseProverbs {
+  left: 43%;
+}
+
+#chooseFast, #chooseMore, #chooseProverbs  {
   position: fixed;
   width: auto;
   height: 3.618rem;
-  left: 50%;
+  
   bottom: -25px;
   padding-top: 0.5em;
   padding-bottom: 1.4em;
@@ -41,12 +55,6 @@ body {
   transform: translateX(-50%);
 }
 
-h3 {
-  display: flex;
-  color: white;
-  height: 80%;
-  margin: auto;
-}
 
 .text {
   color: white;
@@ -87,9 +95,7 @@ h3 {
   cursor: pointer;
 }
 
-p {
-  word-wrap: break-word;
-}
+
 
 /* Back up */
 /* @media only screen and (max-width: 54.9375em) {

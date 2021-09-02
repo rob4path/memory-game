@@ -129,6 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // const resultDisplay = document.querySelector("#result");
   const resultDisplayPlayer1 = document.querySelector("#resultPlayer1");
   const resultDisplayPlayer2 = document.querySelector("#resultPlayer2");
+  const congrats = document.getElementById("congrats");
 
   let cardsChosen = [];
   let cardsChosenId = [];
@@ -224,12 +225,15 @@ document.addEventListener("DOMContentLoaded", () => {
       cardArray.length / 2
     ) {
       if (cardsWonPlayer1.length > cardsWonPlayer2.length) {
-        resultDisplayPlayer1.textContent =
-          "Congratulations, Player 1! You found them all!";
-      } else {
-        resultDisplayPlayer2.textContent =
-          "Congratulations, Player 2! You found them all!";
+        congrats.textContent = "Congratulations, Player 1! You found them all!";
       }
+      if (cardsWonPlayer1.length < cardsWonPlayer2.length) {
+        congrats.textContent = "Congratulations, Player 2! You found them all!";
+      }
+      if (cardsWonPlayer1.length === cardsWonPlayer2.length) {
+        congrats.textContent = "Congratulations, both!";
+      }
+
       // resultDisplay.textContent = "Congratulations! You found them all!";
 
       const refresh = document.getElementById("refresh-btn");
@@ -273,6 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // TODO clear button
       // delete congrats
       // add options for adding text adn ref to different variables
+      // put congrat in other span
 
       // css
       // text too big = ...
@@ -283,11 +288,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  //flip your card
-  function flipCard() {
-    cardsFlipped++;
-
-    if (cardsFlipped === 3) {
+  function changeTurn() {
+    if (cardsFlipped === 2) {
       if (playerTurn === "playerOne") {
         playerTurn = "playerTwo";
         document.getElementById("playerTurn").innerText = "Player 2";
@@ -296,9 +298,12 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("playerTurn").innerText = "Player 1";
       }
 
-      cardsFlipped = 1;
+      cardsFlipped = 0;
     }
+  }
 
+  function flipCard() {
+    cardsFlipped++;
     if (cardsChosen.length > 1) {
       return;
     }
@@ -312,7 +317,10 @@ document.addEventListener("DOMContentLoaded", () => {
     text.style.display = "block";
     // set the display of the img to none and of the p to block
     if (cardsChosen.length === 2) {
-      setTimeout(checkForMatch, 900);
+      setTimeout(function () {
+        checkForMatch();
+        changeTurn();
+      }, 900);
     }
   }
   createBoard();

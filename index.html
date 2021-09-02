@@ -12,7 +12,7 @@
 
 <body>
   <div class="main">
-    <h2 style="color: white;">Create board for:</h2>
+    <h2>Create board for:</h2>
     <input type="button" id='chooseFast' value="FAST">
 
     <input type="button" id='chooseProverbs' value="Proverbs">
@@ -29,10 +29,10 @@
     <input type="button" id='createBoardBtn' onclick="createBoard()" value="Create Board">
 
     <!-- <h3>Score: <span id="result"></span></h3> -->
-
+    <p><span id="congrats"></span></p>
     <h3>Score Player 1: <span id="resultPlayer1"></span></h3>
     <h3>Score Player 2: <span id="resultPlayer2"></span></h3>
-    <h3>Turn: <span id="playerTurn"></span></h3>
+    <h3>Turn: <span id="playerTurn">Player 1</span></h3>
 
   </div>
   <div id="grid" class="grid">
