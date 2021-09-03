@@ -1,6 +1,3 @@
-function refresh() {
-  location.reload();
-}
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("addVerseBtn");
   btn.addEventListener("click", addVerse);
@@ -13,6 +10,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const chooseMoreBtn = document.getElementById("chooseMore");
   chooseMoreBtn.addEventListener("click", chooseMore);
+
+  const refreshBtn = document.getElementById("refreshBtn");
+  refreshBtn.addEventListener("click", refresh);
+
+  const continueBtn = document.getElementById("continueBtn");
+  continueBtn.addEventListener("click", continueGame);
+
+  const addVerseDiv = document.getElementById("addVerseDiv");
+  addVerseDiv.style.display = "none";
 
   const cardArrayProverbs = [
     {
@@ -87,26 +93,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let cardArray = [];
 
+  function continueGame() {
+    clearBoard();
+    shuffleCards();
+    createBoard();
+    playerTurnH3.style.display = "block";
+    playerTurn = "playerOne";
+  }
+  function refresh() {
+    clearBoard();
+    clearScore();
+    shuffleCards();
+    createBoard();
+  }
+
   function chooseProverbs() {
     clearBoard();
     clearScore();
-
-    // cardsFlipped = 0;
     cardArray = cardArrayProverbs;
-    cardArray.sort(() => 0.5 - Math.random());
-
+    shuffleCards();
     createBoard();
   }
 
   function chooseMore() {
+    clearBoard();
+    clearScore();
     cardArray = cardArrayMore;
-    cardArray.sort(() => 0.5 - Math.random());
+    shuffleCards();
     createBoard();
   }
 
   function chooseFast() {
+    clearBoard();
+    clearScore();
     cardArray = cardArrayFAST;
-    cardArray.sort(() => 0.5 - Math.random());
+    shuffleCards();
     createBoard();
   }
   // function chooseSet() {
@@ -257,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (cardsWonPlayer1.length === cardsWonPlayer2.length) {
         congrats.textContent = "Congratulations, both!";
       }
-      playerTurnH3.style.display = "none";
+      // playerTurnH3.style.display = "none";
 
       // resultDisplay.textContent = "Congratulations! You found them all!";
 
@@ -310,12 +331,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cardsFlipped === 2) {
       if (playerTurn === "playerOne") {
         playerTurn = "playerTwo";
-        document.getElementById("playerTurn").innerText = "Player 2";
-        document.getElementById("playerTurn").style.color = "red";
+        document.getElementById("playerTurn").innerText =
+          "Player 2, it's your turn!";
+        document.getElementById("playerTurn").style.color = "green";
       } else {
         playerTurn = "playerOne";
-        document.getElementById("playerTurn").innerText = "Player 1";
-        document.getElementById("playerTurn").style.color = "blue";
+        document.getElementById("playerTurn").innerText =
+          "Player 1, it's your turn!";
+        document.getElementById("playerTurn").style.color = "yellow";
       }
 
       cardsFlipped = 0;
@@ -333,6 +356,9 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsWonPlayer2 = [];
     playerTurnH3.style.display = "block";
     playerTurn = "playerOne";
+    document.getElementById("playerTurn").innerText =
+      "Player 1, it's your turn!";
+    document.getElementById("playerTurn").style.color = "yellow";
   }
 
   function clearBoard() {

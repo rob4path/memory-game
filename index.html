@@ -12,22 +12,27 @@
 
 <body>
   <div class="main">
-   
+   <!-- MENUS -->
     <div class="container">
     <input type="button" class="btn btn1" id='chooseFast' value="FAST">
     <input type="button" class="btn btn2" id='chooseProverbs' value="Proverbs">
     <input type="button" class="btn btn2" id='chooseMore' value="More">
-     <input type="button" class="btn btn4" onclick="refresh()" value="Refresh">
+     <input type="button" class="btn btn4" id="refreshBtn" value="Refresh">
+     <input type="button" class="btn btn4" id="continueBtn" value="Continue game">
     </div>
 
+ <!-- GAME INFO -->
     <div id="game-info">
     <h3>Score Player 1: <span id="resultPlayer1"></span></h3>
     <h3>Score Player 2: <span id="resultPlayer2"></span></h3>
-    <h3 id="h3playerTurn">Turn: <span id="playerTurn">Player 1</span></h3>
+    <h3 id="h3playerTurn"><span id="playerTurn"></span></h3>
 <p><span id="congrats"></span></p>
 </div>
     <br>
     <br>
+
+ <!-- ADD VERSE -->
+ <div id="addVerseDiv">
     <input id='reference' type="text" placeholder="Reference">
     <br>
     <input id='text' type="text" placeholder="Text">
@@ -41,9 +46,8 @@
     <br>
     <input type="button" class="btn btn1"id='addVerseBtn' value="Add verse">
     <br> 
-    <!-- <input type="button" id='createBoardBtn' onclick="createBoard()" value="Create Board"> -->
-
-    <!-- <h3>Score: <span id="result"></span></h3> -->
+    </div>
+  
     
   </div>
   <div id="grid" class="grid">
