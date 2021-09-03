@@ -107,8 +107,16 @@ document.addEventListener("DOMContentLoaded", () => {
     cardArray.sort(() => 0.5 - Math.random());
     createBoard();
   }
+  // function chooseSet() {
+  //   let selectBox = document.getElementById("selectBox");
+  //   let selectedValue = selectBox.options[selectBox.selectedIndex].value;
+  //   console.log(selectedValue);
+  // }
 
   function addVerse() {
+    let selectBox = document.getElementById("selectBox");
+    let selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
     const takeReference = document.getElementById("reference").value;
     const takeText = document.getElementById("text").value;
 
@@ -120,9 +128,23 @@ document.addEventListener("DOMContentLoaded", () => {
       reference: takeReference,
       text: takeText,
     };
+
+    if (selectedValue === "fast") {
+      cardArray = cardArrayFAST;
+    }
+    if (selectedValue === "proverbs") {
+      cardArray = cardArrayProverbs;
+    }
+    if (selectedValue === "mySet1") {
+      cardArray = cardArrayMore;
+    }
+    if (selectedValue === "fast") {
+      cardArray = cardArrayFAST;
+    }
+
     cardArray.push(newReference);
     cardArray.push(newVerse);
-    console.log(addVerse);
+
     console.log(cardArray);
 
     createBoard();
