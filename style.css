@@ -107,15 +107,17 @@ left: 50%;
 
 #game-info {
   border: 2px solid #3498db;
-  background: none;
+  border-collapse: collapse;
+  /* background: none; */
 
-  position: fixed;
+  /* position: fixed; */
   padding: 5px 15px;
   justify-content: center;
   transition: 1.2s;
   right: 5px;
   top: 5px;
 }
+
 /* BUTTONS */
 .btn {
   border: 2px solid #3498db;
@@ -127,6 +129,7 @@ left: 50%;
 
 .container {
   display: flex;
+  margin: 5px;
   flex-wrap: wrap;
   text-align: center;
   margin-top: 0px;
@@ -180,7 +183,8 @@ left: 50%;
 .btn4:hover::before {
   height: 0%;
 }
-
+@media only screen and (max-width: 54.9375em) {
+}
 /* Back up */
 /* @media only screen and (max-width: 54.9375em) {
   .menu-toggle {

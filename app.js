@@ -86,13 +86,11 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   let cardArray = [];
-  //    cardArray = cardArrayFAST
-  // console.log(cardArray);
-  //card options
 
   function chooseProverbs() {
     cardArray = cardArrayProverbs;
     cardArray.sort(() => 0.5 - Math.random());
+
     createBoard();
   }
 
@@ -276,9 +274,6 @@ document.addEventListener("DOMContentLoaded", () => {
     cardArray.sort(() => 0.5 - Math.random());
   }
 
-  //   // remove matched class from all cards
-
-  // }
   function updateBoard() {
     shuffleCards();
     const cards = document.getElementsByClassName("card");
@@ -324,6 +319,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
       cardsFlipped = 0;
     }
+  }
+
+  function clearBoard() {
+    let clearCards = document.getElementById("grid");
+    clearCards.innerHTML = " ";
+    cardsFlipped = 0;
+    resultDisplayPlayer1.innerText = " ";
+    resultDisplayPlayer2.innerText = " ";
+    congrats.innerText = " ";
+    cardsWonPlayer1 = 0;
+    cardsWonPlayer2 = 0;
+    // let menu = document.getElementById("menu");
+    // while (menu.firstChild) {
+    //   menu.removeChild(menu.firstChild);
+    // }
   }
 
   function flipCard() {
