@@ -29,8 +29,13 @@ body {
 
 .text {
   color: white;
+  font-size: 1.5em;
+  width: -moz-fit-content;
+  padding: 5px;
+  margin-bottom: 1em;
   text-overflow: ellipsis;
-  font-family: cursive;
+  text-align: center;
+  text-align-last: auto;
 }
 /* #chooseFast {
 left: 50%;
@@ -76,7 +81,7 @@ left: 50%;
   flex-wrap: wrap;
   justify-content: center;
   margin: auto;
-  width: 90%;
+  width: 98%;
   height: 80%;
   padding: 10px;
 }
@@ -183,7 +188,35 @@ left: 50%;
 .btn4:hover::before {
   height: 0%;
 }
-@media only screen and (max-width: 54.9375em) {
+@media screen and (max-width: 659px) {
+  .card {
+    width: 160px;
+    height: 100px;
+  }
+  .back {
+    width: 160px;
+    height: 100px;
+  }
+  .text {
+    color: white;
+    font-size: 1em;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 450px) {
+  .card {
+    width: 100px;
+    height: 60px;
+  }
+  .back {
+    width: 100px;
+    height: 60px;
+  }
+  .text {
+    color: white;
+    font-size: 0.7em;
+    text-align: center;
+  }
 }
 /* Back up */
 /* @media only screen and (max-width: 54.9375em) {

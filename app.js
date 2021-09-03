@@ -194,6 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const image = document.createElement("img");
       const text = document.createElement("p");
       card.className = "card ";
+      card.id = "cardID";
       image.className = "back ";
       text.className = "text ";
       image.setAttribute("src", "images/bibleHand.jpg");
@@ -398,6 +399,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   createBoard();
+  fitTextInBox("cardID");
 
   // prompt('Versetele de la FAST, M2')
 });
