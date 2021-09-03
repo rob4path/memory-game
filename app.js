@@ -258,6 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (cardsWonPlayer1.length === cardsWonPlayer2.length) {
         congrats.textContent = "Congratulations, both!";
       }
+      document.getElementById("h3playerTurn").style.display = "none";
 
       // resultDisplay.textContent = "Congratulations! You found them all!";
 
@@ -314,9 +315,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (playerTurn === "playerOne") {
         playerTurn = "playerTwo";
         document.getElementById("playerTurn").innerText = "Player 2";
+        document.getElementById("playerTurn").style.color = "red";
       } else {
         playerTurn = "playerOne";
         document.getElementById("playerTurn").innerText = "Player 1";
+        document.getElementById("playerTurn").style.color = "blue";
       }
 
       cardsFlipped = 0;

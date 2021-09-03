@@ -78,7 +78,7 @@ left: 50%;
   margin: auto;
   width: 90%;
   height: 80%;
-  padding: 1px;
+  padding: 10px;
 }
 
 .card {
@@ -102,9 +102,20 @@ left: 50%;
   background: #18d34dcc;
   border: 10px;
   transition: 0.4s linear;
-  padding: 3px;
+  /* padding: 3px; */
 }
 
+#game-info {
+  border: 2px solid #3498db;
+  background: none;
+
+  position: fixed;
+  padding: 5px 15px;
+  justify-content: center;
+  transition: 1.2s;
+  right: 5px;
+  top: 5px;
+}
 /* BUTTONS */
 .btn {
   border: 2px solid #3498db;
