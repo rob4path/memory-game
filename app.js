@@ -88,6 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let cardArray = [];
 
   function chooseProverbs() {
+    clearBoard();
+    clearScore();
+
+    // cardsFlipped = 0;
     cardArray = cardArrayProverbs;
     cardArray.sort(() => 0.5 - Math.random());
 
@@ -143,8 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
     cardArray.push(newReference);
     cardArray.push(newVerse);
 
-    console.log(cardArray);
-
     createBoard();
   }
 
@@ -162,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let playerTurn = "playerOne";
   let cardsFlipped = 0;
+  let playerTurnH3 = document.getElementById("h3playerTurn");
 
   //create your board
   function createBoard() {
@@ -186,8 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //check for matches
   function checkForMatch() {
-    console.log(cardsChosen);
-    console.log(cardsChosenId);
     const cards = document.querySelectorAll(".card");
     const optionOneId = cardsChosenId[0];
     const optionTwoId = cardsChosenId[1];
@@ -256,14 +257,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (cardsWonPlayer1.length === cardsWonPlayer2.length) {
         congrats.textContent = "Congratulations, both!";
       }
-      document.getElementById("h3playerTurn").style.display = "none";
+      playerTurnH3.style.display = "none";
 
       // resultDisplay.textContent = "Congratulations! You found them all!";
 
       const refresh = document.getElementById("refresh-btn");
       // refresh.className = 'refresh-btn'
       // refresh.style.display = 'block'
-      refresh.addEventListener("click", updateBoard);
+      // refresh.addEventListener("click", updateBoard);
       // const fresh = document.getElementsByClassName('main')[0]
 
       // fresh.appendChild(refresh)
@@ -321,15 +322,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function clearBoard() {
+  function clearScore() {
     let clearCards = document.getElementById("grid");
     clearCards.innerHTML = " ";
     cardsFlipped = 0;
     resultDisplayPlayer1.innerText = " ";
     resultDisplayPlayer2.innerText = " ";
     congrats.innerText = " ";
-    cardsWonPlayer1 = 0;
-    cardsWonPlayer2 = 0;
+    cardsWonPlayer1 = [];
+    cardsWonPlayer2 = [];
+    playerTurnH3.style.display = "block";
+    playerTurn = "playerOne";
+  }
+
+  function clearBoard() {
+    let clearCards = document.getElementById("grid");
+    clearCards.innerHTML = " ";
+
+    congrats.innerText = " ";
+
+    cardsFlipped = 0;
+    // playerTurn = "playerOne";
+
     // let menu = document.getElementById("menu");
     // while (menu.firstChild) {
     //   menu.removeChild(menu.firstChild);
