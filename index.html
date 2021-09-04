@@ -12,48 +12,58 @@
 
 <body>
   <div class="main">
-   <!-- MENUS -->
+    <!-- MENUS -->
     <div class="container">
-    <input type="button" class="btn btn1" id='chooseFast' value="FAST">
-    <input type="button" class="btn btn2" id='chooseProverbs' value="Proverbs">
-    <input type="button" class="btn btn2" id='chooseMore' value="More">
-     <input type="button" class="btn btn4" id="refreshBtn" value="Refresh">
-     <input type="button" class="btn btn4" id="continueBtn" value="Continue game">
+      <input type="button" class="btn btn3" id="onePlayer" value="One Player">
+      <input type="button" class="btn btn4" id="twoPlayers" value="Two Players">
+    </div>
+    <br>
+    <div class="container">
+
+      <input type="button" class="btn btn3" id='chooseFast' value="FAST">
+      <input type="button" class="btn btn4" id='chooseProverbs' value="Proverbs">
+      <input type="button" class="btn btn4" id='chooseMore' value="More">
+      <input type="button" class="btn btn2" id="refreshBtn" value="Refresh">
+      <input type="button" class="btn btn2" id="continueBtn" value="Continue">
+
     </div>
 
- <!-- GAME INFO -->
+    <!-- GAME INFO -->
     <div id="game-info">
-    <h3>Score Player 1: <span id="resultPlayer1"></span></h3>
-    <h3>Score Player 2: <span id="resultPlayer2"></span></h3>
-    <h3 id="h3playerTurn"><span id="playerTurn"></span></h3>
-<p><span id="congrats"></span></p>
-</div>
+      <h3>Score Player 1: <span id="result"></span></h3>
+      <div id="twoPlayersScore">
+        <h3>Score Player 1: <span id="resultPlayer1"></span></h3>
+        <h3>Score Player 2: <span id="resultPlayer2"></span></h3>
+        <h3 id="h3playerTurn"><span id="playerTurn"></span></h3>
+        <p><span id="congrats"></span></p>
+      </div>
+    </div>
     <br>
     <br>
 
- <!-- ADD VERSE -->
- <div id="addVerseDiv">
-    <input id='reference' type="text" placeholder="Reference">
-    <br>
-    <input id='text' type="text" placeholder="Text">
-    <br>
-    <select id="selectBox" name="cars">
-            <option id="fastOption" value="fast">FAST</option>
-            <option id="proverbsOption" value="proverbs">Proverbs</option>
-            <option id="mySet1Option" value="mySet1">MySet1</option>
-            <option id="mySet2Option" value="mySet2">MySet2</option>
-    </select>
-    <br>
-    <input type="button" class="btn btn1"id='addVerseBtn' value="Add verse">
-    <br> 
+    <!-- ADD VERSE -->
+    <div id="addVerseDiv">
+      <input id='reference' type="text" placeholder="Reference">
+      <br>
+      <input id='text' type="text" placeholder="Text">
+      <br>
+      <select id="selectBox" name="cars">
+        <option id="fastOption" value="fast">FAST</option>
+        <option id="proverbsOption" value="proverbs">Proverbs</option>
+        <option id="mySet1Option" value="mySet1">MySet1</option>
+        <option id="mySet2Option" value="mySet2">MySet2</option>
+      </select>
+      <br>
+      <input type="button" class="btn btn1" id='addVerseBtn' value="Add verse">
+      <br>
     </div>
-  
-    
+
+
   </div>
   <div id="grid" class="grid">
   </div>
   <!-- <input type="button" id='refresh-btn' value="Refresh"> -->
- 
+
 </body>
 
 </html>

@@ -171,6 +171,12 @@ left: 50%;
   top: 0;
   border-radius: 0 0 50% 50%;
 }
+.btn3:active {
+  color: red;
+}
+.btn3:focus {
+  color: red;
+}
 .btn2::before,
 .btn4::before {
   bottom: 0;

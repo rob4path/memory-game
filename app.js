@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const btnOne = document.getElementById("onePlayer");
+  btnOne.addEventListener("click", onePlayer);
+  
+  const twoPlayersBtn = document.getElementById("twoPlayers");
+  twoPlayersBtn.addEventListener("click", twoPlayers);
+  
   const btn = document.getElementById("addVerseBtn");
   btn.addEventListener("click", addVerse);
 
@@ -17,8 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const continueBtn = document.getElementById("continueBtn");
   continueBtn.addEventListener("click", continueGame);
 
-  const addVerseDiv = document.getElementById("addVerseDiv");
+  let addVerseDiv = document.getElementById("addVerseDiv");
   addVerseDiv.style.display = "none";
+
+  let gameinfo = document.getElementById("game-info");
+  gameinfo.style.display = "none";
 
   const cardArrayProverbs = [
     {
@@ -172,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const grid = document.querySelector(".grid");
-  // const resultDisplay = document.querySelector("#result");
+  const resultDisplay = document.querySelector("#result");
   const resultDisplayPlayer1 = document.querySelector("#resultPlayer1");
   const resultDisplayPlayer2 = document.querySelector("#resultPlayer2");
   const congrats = document.getElementById("congrats");
@@ -186,9 +195,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let playerTurn = "playerOne";
   let cardsFlipped = 0;
   let playerTurnH3 = document.getElementById("h3playerTurn");
-
+let twoPlayersScore = document.getElementById("twoPlayersScore");
   //create your board
   function createBoard() {
+     gameinfo.style.display = "block";
     for (let i = 0; i < cardArray.length; i++) {
       const card = document.createElement("div");
       const image = document.createElement("img");
@@ -207,6 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
       card.addEventListener("click", flipCard);
       grid.appendChild(card);
     }
+    
   }
 
   //check for matches
@@ -241,8 +252,8 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         cardsWonPlayer2.push(cardsChosen);
       }
-
-      // cardsWon.push(cardsChosen);
+     
+      cardsWon.push(cardsChosen);
     } else {
       imgOptionOne = cards[optionOneId].childNodes[0];
       pOptionOne = cards[optionOneId].childNodes[1];
@@ -264,7 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
       resultDisplayPlayer2.textContent = cardsWonPlayer2.length;
     }
 
-    // resultDisplay.textContent = cardsWon.length;
+    resultDisplay.textContent = cardsWon.length;
 
     if (
       cardsWonPlayer1.length + cardsWonPlayer2.length ===
@@ -311,7 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
       img.style.display = "block";
       text.style.display = "none";
 
-      cardsWon = [];
+      // cardsWon = [];
 
       cards[i].addEventListener("click", flipCard);
 
@@ -377,6 +388,33 @@ document.addEventListener("DOMContentLoaded", () => {
     // }
   }
 
+  function onePlayer() {
+    cardsWonPlayer1 = cardsWon;
+    cardsWonPlayer2 = cardsWon;
+    resultDisplay.style.display = "block";
+    resultDisplayPlayer1.style.display = "none";
+    resultDisplayPlayer2.style.display = "none";
+    twoPlayersScore.style.display = "none";
+    clearBoard();
+    clearScore();
+    cardArray = cardArrayMore;
+    shuffleCards();
+    createBoard();
+  }
+
+   function twoPlayers() {
+   cardsWonPlayer1 = cardsWon;
+     cardsWonPlayer2 = cardsWon;
+     resultDisplay.style.display = "none";
+    resultDisplayPlayer1.style.display = "block";
+    resultDisplayPlayer2.style.display = "block";
+    twoPlayersScore.style.display = "block";
+    clearBoard();
+    clearScore();
+    cardArray = cardArrayMore;
+    shuffleCards();
+    createBoard();
+  }
   function flipCard() {
     cardsFlipped++;
     if (cardsChosen.length > 1) {
@@ -398,8 +436,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 900);
     }
   }
-  createBoard();
-  fitTextInBox("cardID");
+  
 
   // prompt('Versetele de la FAST, M2')
 });
