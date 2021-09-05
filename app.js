@@ -108,12 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
     createBoard();
     playerTurnH3.style.display = "block";
     playerTurn = "playerOne";
+    congrats.style.display = "none";
   }
   function refresh() {
     clearBoard();
     clearScore();
     shuffleCards();
     createBoard();
+    congrats.style.display = "block";
   }
 
   function chooseProverbs() {
@@ -195,7 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let playerTurn = "playerOne";
   let cardsFlipped = 0;
   let playerTurnH3 = document.getElementById("h3playerTurn");
-let twoPlayersScore = document.getElementById("twoPlayersScore");
+  let twoPlayersScore = document.getElementById("twoPlayersScore");
+   let onePlayerScore = document.getElementById("onePlayerScore")
   //create your board
   function createBoard() {
      gameinfo.style.display = "block";
@@ -361,9 +364,11 @@ let twoPlayersScore = document.getElementById("twoPlayersScore");
     let clearCards = document.getElementById("grid");
     clearCards.innerHTML = " ";
     cardsFlipped = 0;
+    resultDisplay.innerText = " ";
     resultDisplayPlayer1.innerText = " ";
     resultDisplayPlayer2.innerText = " ";
     congrats.innerText = " ";
+    cardsWon = [];
     cardsWonPlayer1 = [];
     cardsWonPlayer2 = [];
     playerTurnH3.style.display = "block";
@@ -389,31 +394,27 @@ let twoPlayersScore = document.getElementById("twoPlayersScore");
   }
 
   function onePlayer() {
+     clearBoard();
+    clearScore();
     cardsWonPlayer1 = cardsWon;
     cardsWonPlayer2 = cardsWon;
-    resultDisplay.style.display = "block";
+    resultDisplay.style.display = "contents";
     resultDisplayPlayer1.style.display = "none";
     resultDisplayPlayer2.style.display = "none";
     twoPlayersScore.style.display = "none";
-    clearBoard();
-    clearScore();
-    cardArray = cardArrayMore;
-    shuffleCards();
-    createBoard();
+    onePlayerScore.style.display = "contents";
+   
   }
 
    function twoPlayers() {
-   cardsWonPlayer1 = cardsWon;
-     cardsWonPlayer2 = cardsWon;
-     resultDisplay.style.display = "none";
-    resultDisplayPlayer1.style.display = "block";
-    resultDisplayPlayer2.style.display = "block";
-    twoPlayersScore.style.display = "block";
-    clearBoard();
+  clearBoard();
     clearScore();
-    cardArray = cardArrayMore;
-    shuffleCards();
-    createBoard();
+     resultDisplay.style.display = "none";
+    resultDisplayPlayer1.style.display = "contents";
+    resultDisplayPlayer2.style.display = "contents";
+     twoPlayersScore.style.display = "contents";
+     onePlayerScore.style.display = "none";
+   
   }
   function flipCard() {
     cardsFlipped++;
