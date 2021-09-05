@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const btnOne = document.getElementById("onePlayer");
   btnOne.addEventListener("click", onePlayer);
-  
+
   const twoPlayersBtn = document.getElementById("twoPlayers");
   twoPlayersBtn.addEventListener("click", twoPlayers);
-  
+
   const btn = document.getElementById("addVerseBtn");
   btn.addEventListener("click", addVerse);
 
@@ -108,38 +108,33 @@ document.addEventListener("DOMContentLoaded", () => {
     createBoard();
     playerTurnH3.style.display = "block";
     playerTurn = "playerOne";
-    congrats.style.display = "none";
+    congrats.innerHTML = " ";
+    congratsOne.innerHTML = " ";
   }
   function refresh() {
     clearBoard();
     clearScore();
     shuffleCards();
     createBoard();
-    congrats.style.display = "block";
+    congrats.innerHTML = " ";
+    congratsOne.innerHTML = " ";
   }
 
   function chooseProverbs() {
-    clearBoard();
-    clearScore();
     cardArray = cardArrayProverbs;
-    shuffleCards();
-    createBoard();
+    refresh()
+
   }
 
   function chooseMore() {
-    clearBoard();
-    clearScore();
     cardArray = cardArrayMore;
-    shuffleCards();
-    createBoard();
+    refresh()
+
   }
 
   function chooseFast() {
-    clearBoard();
-    clearScore();
     cardArray = cardArrayFAST;
-    shuffleCards();
-    createBoard();
+    refresh()
   }
   // function chooseSet() {
   //   let selectBox = document.getElementById("selectBox");
@@ -187,6 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultDisplayPlayer1 = document.querySelector("#resultPlayer1");
   const resultDisplayPlayer2 = document.querySelector("#resultPlayer2");
   const congrats = document.getElementById("congrats");
+  const congratsOne = document.getElementById("congratsOne");
 
   let cardsChosen = [];
   let cardsChosenId = [];
@@ -198,10 +194,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let cardsFlipped = 0;
   let playerTurnH3 = document.getElementById("h3playerTurn");
   let twoPlayersScore = document.getElementById("twoPlayersScore");
-   let onePlayerScore = document.getElementById("onePlayerScore")
+  let onePlayerScore = document.getElementById("onePlayerScore")
+
   //create your board
   function createBoard() {
-     gameinfo.style.display = "block";
+    gameinfo.style.display = "block";
     for (let i = 0; i < cardArray.length; i++) {
       const card = document.createElement("div");
       const image = document.createElement("img");
@@ -220,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
       card.addEventListener("click", flipCard);
       grid.appendChild(card);
     }
-    
+
   }
 
   //check for matches
@@ -255,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         cardsWonPlayer2.push(cardsChosen);
       }
-     
+
       cardsWon.push(cardsChosen);
     } else {
       imgOptionOne = cards[optionOneId].childNodes[0];
@@ -293,9 +290,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (cardsWonPlayer1.length === cardsWonPlayer2.length) {
         congrats.textContent = "Congratulations, both!";
       }
+      // if (cardsWon = cardArray.lenght / 2) {
+
+      //   congratsOne.textContent = "Congratulations, ONE PLAYER";
+      // }
       // playerTurnH3.style.display = "none";
 
-      // resultDisplay.textContent = "Congratulations! You found them all!";
+      congratsOne.textContent = "Congratulations! You found them all!";
 
       const refresh = document.getElementById("refresh-btn");
       // refresh.className = 'refresh-btn'
@@ -305,6 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // fresh.appendChild(refresh)
     }
+
   }
 
   function shuffleCards() {
@@ -394,7 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function onePlayer() {
-     clearBoard();
+    clearBoard();
     clearScore();
     cardsWonPlayer1 = cardsWon;
     cardsWonPlayer2 = cardsWon;
@@ -403,18 +405,18 @@ document.addEventListener("DOMContentLoaded", () => {
     resultDisplayPlayer2.style.display = "none";
     twoPlayersScore.style.display = "none";
     onePlayerScore.style.display = "contents";
-   
+
   }
 
-   function twoPlayers() {
-  clearBoard();
+  function twoPlayers() {
+    clearBoard();
     clearScore();
-     resultDisplay.style.display = "none";
+    resultDisplay.style.display = "none";
     resultDisplayPlayer1.style.display = "contents";
     resultDisplayPlayer2.style.display = "contents";
-     twoPlayersScore.style.display = "contents";
-     onePlayerScore.style.display = "none";
-   
+    twoPlayersScore.style.display = "contents";
+    onePlayerScore.style.display = "none";
+
   }
   function flipCard() {
     cardsFlipped++;
@@ -437,7 +439,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 900);
     }
   }
-  
+
 
   // prompt('Versetele de la FAST, M2')
 });

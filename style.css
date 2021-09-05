@@ -18,6 +18,15 @@ body {
   color: white;
 }
 
+#congratsOne {
+  font-size: 28px;
+  font-weight: bolder;
+  text-decoration-color: teal;
+  text-emphasis-color: red;
+  color: aqua;
+  transition-delay: 20ms;
+}
+
 #congrats {
   font-size: 28px;
   font-weight: bolder;
