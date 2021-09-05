@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let gameinfo = document.getElementById("game-info");
   gameinfo.style.display = "none";
 
+  let refCon = document.getElementById("refCon");
+  refCon.style.display = "none";
+
   const cardArrayProverbs = [
     {
       reference: "1 Ioan 2:6",
@@ -49,20 +52,20 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   const cardArrayMore = [
     {
-      reference: "1 Ioan 2:6",
-      text: "1 Ioan 2:6",
+      reference: "....",
+      text: ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .... ...... ...... ..... ...... ... .... ....... .. ........................",
     },
     {
-      reference: "1 Ioan 2:6",
-      text: "Cine zice că rămâne în El trebuie să trăiască și el cum a trăit Isus",
+      reference: "....",
+      text: ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. ... ..   ..... .... . ..  . ...... ..............................",
     },
     {
-      reference: "1 Ioan 1:9",
-      text: "1 Ioan 1:9",
+      reference: "OOOO",
+      text: "O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O OOOO  OOOOO O OOOO  OOOO OOOOOO OOO OOOOOOOOOOOOOOOOOOOOOOOOO",
     },
     {
-      reference: "1 Ioan 1:9",
-      text: "Daca ne marturisim pacatele El este credincios si drept ca sa ne ierte toate pacatele si sa ne ierte de orice nelegiuire",
+      reference: "OOOO",
+      text: "O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O  OOOOOOOO  OOOOO OO OOO OOO OO OOOOOOOOOOOOOOOOOOOOOOOOO",
     },
   ];
   const cardArrayFAST = [
@@ -118,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createBoard();
     congrats.innerHTML = " ";
     congratsOne.innerHTML = " ";
+    refCon.style.display = "none";
   }
 
   function chooseProverbs() {
@@ -298,7 +302,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       congratsOne.textContent = "Congratulations! You found them all!";
 
-      const refresh = document.getElementById("refresh-btn");
+      refCon.style.display = "block";
+
+      // const refresh = document.getElementById("refresh-btn");
       // refresh.className = 'refresh-btn'
       // refresh.style.display = 'block'
       // refresh.addEventListener("click", updateBoard);
@@ -405,6 +411,8 @@ document.addEventListener("DOMContentLoaded", () => {
     resultDisplayPlayer2.style.display = "none";
     twoPlayersScore.style.display = "none";
     onePlayerScore.style.display = "contents";
+    congrats.innerHTML = " ";
+    congratsOne.innerHTML = " ";
 
   }
 
@@ -416,6 +424,8 @@ document.addEventListener("DOMContentLoaded", () => {
     resultDisplayPlayer2.style.display = "contents";
     twoPlayersScore.style.display = "contents";
     onePlayerScore.style.display = "none";
+    congrats.innerHTML = " ";
+    congratsOne.innerHTML = " ";
 
   }
   function flipCard() {
