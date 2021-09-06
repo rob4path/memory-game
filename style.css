@@ -87,11 +87,11 @@ body {
 #game-info {
   border: 2px solid #3498db;
   border-collapse: collapse;
-  /* background: none; */
+  background: none;
 
   /* position: fixed; */
   padding: 5px 15px;
-  justify-content: center;
+  text-align: center;
   transition: 1.2s;
   right: 5px;
   top: 5px;
@@ -117,6 +117,11 @@ body {
 } */
 .btnDiv {
   text-align: center;
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+#addVerseDiv {
+   text-align: center;
   margin-top: 6px;
   margin-bottom: 10px;
 }

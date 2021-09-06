@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // VARIABLES
   const btnOne = document.getElementById("onePlayer");
   btnOne.addEventListener("click", onePlayer);
 
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   continueBtn.addEventListener("click", continueGame);
 
   let addVerseDiv = document.getElementById("addVerseDiv");
-  addVerseDiv.style.display = "none";
+  addVerseDiv.style.display = "block";
 
   let gameinfo = document.getElementById("game-info");
   gameinfo.style.display = "none";
@@ -127,13 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function chooseProverbs() {
     cardArray = cardArrayProverbs;
     refresh()
-
   }
 
   function chooseMore() {
     cardArray = cardArrayMore;
     refresh()
-
   }
 
   function chooseFast() {
@@ -145,6 +144,85 @@ document.addEventListener("DOMContentLoaded", () => {
   //   let selectedValue = selectBox.options[selectBox.selectedIndex].value;
   //   console.log(selectedValue);
   // }
+
+  function changeTurn() {
+    if (cardsFlipped === 2) {
+      if (playerTurn === "playerOne") {
+        playerTurn = "playerTwo";
+        document.getElementById("playerTurn").innerText =
+          "Player 2, it's your turn!";
+        document.getElementById("playerTurn").style.color = "green";
+      } else {
+        playerTurn = "playerOne";
+        document.getElementById("playerTurn").innerText =
+          "Player 1, it's your turn!";
+        document.getElementById("playerTurn").style.color = "yellow";
+      }
+
+      cardsFlipped = 0;
+    }
+  }
+
+  function clearScore() {
+    let clearCards = document.getElementById("grid");
+    clearCards.innerHTML = " ";
+    cardsFlipped = 0;
+    resultDisplay.innerText = " ";
+    resultDisplayPlayer1.innerText = " ";
+    resultDisplayPlayer2.innerText = " ";
+    congrats.innerText = " ";
+    cardsWon = [];
+    cardsWonPlayer1 = [];
+    cardsWonPlayer2 = [];
+    playerTurnH3.style.display = "block";
+    playerTurn = "playerOne";
+    document.getElementById("playerTurn").innerText =
+      "Player 1, it's your turn!";
+    document.getElementById("playerTurn").style.color = "yellow";
+  }
+
+  function clearBoard() {
+    let clearCards = document.getElementById("grid");
+    clearCards.innerHTML = " ";
+
+    congrats.innerText = " ";
+
+    cardsFlipped = 0;
+    // playerTurn = "playerOne";
+
+    // let menu = document.getElementById("menu");
+    // while (menu.firstChild) {
+    //   menu.removeChild(menu.firstChild);
+    // }
+  }
+
+  function onePlayer() {
+    clearBoard();
+    clearScore();
+    cardsWonPlayer1 = cardsWon;
+    cardsWonPlayer2 = cardsWon;
+    resultDisplay.style.display = "contents";
+    resultDisplayPlayer1.style.display = "none";
+    resultDisplayPlayer2.style.display = "none";
+    twoPlayersScore.style.display = "none";
+    onePlayerScore.style.display = "contents";
+    congrats.innerHTML = " ";
+    congratsOne.innerHTML = " ";
+
+  }
+
+  function twoPlayers() {
+    clearBoard();
+    clearScore();
+    resultDisplay.style.display = "none";
+    resultDisplayPlayer1.style.display = "contents";
+    resultDisplayPlayer2.style.display = "contents";
+    twoPlayersScore.style.display = "contents";
+    onePlayerScore.style.display = "none";
+    congrats.innerHTML = " ";
+    congratsOne.innerHTML = " ";
+
+  }
 
   function addVerse() {
     let selectBox = document.getElementById("selectBox");
@@ -171,14 +249,33 @@ document.addEventListener("DOMContentLoaded", () => {
     if (selectedValue === "mySet1") {
       cardArray = cardArrayMore;
     }
-    if (selectedValue === "fast") {
-      cardArray = cardArrayFAST;
+    if (selectedValue === "mySet2") {
+      cardArray = cardArrayMore;
     }
-
+    console.log(cardArray);
     cardArray.push(newReference);
     cardArray.push(newVerse);
+    arrayList()
 
-    createBoard();
+  }
+
+  function arrayList() {
+    // cardArray.forEach(function (val, i, text) {
+    //   document.write(i + ": " + val + "<br>");
+    // });
+    list.innerHTML = " ";
+    for (let i = 0; i < cardArray.length; i++) {
+      const addVerseDiv = document.getElementById("addVerseDiv")
+
+      const listP = document.createElement("p");
+      addVerseDiv.appendChild(list)
+      list.appendChild(listP)
+
+      listP.innerHTML = cardArray[i].reference
+
+
+    }
+    console.log(listP);
   }
 
   const grid = document.querySelector(".grid");
@@ -187,6 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultDisplayPlayer2 = document.querySelector("#resultPlayer2");
   const congrats = document.getElementById("congrats");
   const congratsOne = document.getElementById("congratsOne");
+  const list = document.getElementById("arrayList");
 
   let cardsChosen = [];
   let cardsChosenId = [];
@@ -350,84 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function changeTurn() {
-    if (cardsFlipped === 2) {
-      if (playerTurn === "playerOne") {
-        playerTurn = "playerTwo";
-        document.getElementById("playerTurn").innerText =
-          "Player 2, it's your turn!";
-        document.getElementById("playerTurn").style.color = "green";
-      } else {
-        playerTurn = "playerOne";
-        document.getElementById("playerTurn").innerText =
-          "Player 1, it's your turn!";
-        document.getElementById("playerTurn").style.color = "yellow";
-      }
 
-      cardsFlipped = 0;
-    }
-  }
-
-  function clearScore() {
-    let clearCards = document.getElementById("grid");
-    clearCards.innerHTML = " ";
-    cardsFlipped = 0;
-    resultDisplay.innerText = " ";
-    resultDisplayPlayer1.innerText = " ";
-    resultDisplayPlayer2.innerText = " ";
-    congrats.innerText = " ";
-    cardsWon = [];
-    cardsWonPlayer1 = [];
-    cardsWonPlayer2 = [];
-    playerTurnH3.style.display = "block";
-    playerTurn = "playerOne";
-    document.getElementById("playerTurn").innerText =
-      "Player 1, it's your turn!";
-    document.getElementById("playerTurn").style.color = "yellow";
-  }
-
-  function clearBoard() {
-    let clearCards = document.getElementById("grid");
-    clearCards.innerHTML = " ";
-
-    congrats.innerText = " ";
-
-    cardsFlipped = 0;
-    // playerTurn = "playerOne";
-
-    // let menu = document.getElementById("menu");
-    // while (menu.firstChild) {
-    //   menu.removeChild(menu.firstChild);
-    // }
-  }
-
-  function onePlayer() {
-    clearBoard();
-    clearScore();
-    cardsWonPlayer1 = cardsWon;
-    cardsWonPlayer2 = cardsWon;
-    resultDisplay.style.display = "contents";
-    resultDisplayPlayer1.style.display = "none";
-    resultDisplayPlayer2.style.display = "none";
-    twoPlayersScore.style.display = "none";
-    onePlayerScore.style.display = "contents";
-    congrats.innerHTML = " ";
-    congratsOne.innerHTML = " ";
-
-  }
-
-  function twoPlayers() {
-    clearBoard();
-    clearScore();
-    resultDisplay.style.display = "none";
-    resultDisplayPlayer1.style.display = "contents";
-    resultDisplayPlayer2.style.display = "contents";
-    twoPlayersScore.style.display = "contents";
-    onePlayerScore.style.display = "none";
-    congrats.innerHTML = " ";
-    congratsOne.innerHTML = " ";
-
-  }
   function flipCard() {
     cardsFlipped++;
     if (cardsChosen.length > 1) {
@@ -446,7 +467,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(function () {
         checkForMatch();
         changeTurn();
-      }, 900);
+      }, 400);
     }
   }
 
