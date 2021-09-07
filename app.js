@@ -1,37 +1,39 @@
 document.addEventListener("DOMContentLoaded", () => {
   // VARIABLES
-  const btnOne = document.getElementById("onePlayer");
-  btnOne.addEventListener("click", onePlayer);
 
-  const twoPlayersBtn = document.getElementById("twoPlayers");
-  twoPlayersBtn.addEventListener("click", twoPlayers);
+  $("#onePlayer").click(onePlayer)
+  $("#twoPlayers").click(twoPlayers)
+  $("#addVerseBtn").click(addVerse)
+  $("#chooseFast").click(chooseFast)
+  $("#chooseProvkerbs").click(chooseProverbs)
+  $("#chooseMore").click(chooseMore)
+  $("#refreshBtn").click(refresh)
+  $("#continueBtn").click(continueGame)
 
-  const btn = document.getElementById("addVerseBtn");
-  btn.addEventListener("click", addVerse);
+  $("#game-info").css("display", "none")
+  $("#refConBtn").css("display", "none");
+  $("#addVerseDiv").css("display", "none");
 
-  const chooseFastBtn = document.getElementById("chooseFast");
-  chooseFastBtn.addEventListener("click", chooseFast);
+  const grid = document.querySelector(".grid");
+  const resultDisplay = document.querySelector("#result");
+  const resultDisplayPlayer1 = document.querySelector("#resultPlayer1");
+  const resultDisplayPlayer2 = document.querySelector("#resultPlayer2");
+  const congrats = document.getElementById("congrats");
+  const congratsOne = document.getElementById("congratsOne");
+  const list = document.getElementById("arrayList");
 
-  const chooseProverbsBtn = document.getElementById("chooseProverbs");
-  chooseProverbsBtn.addEventListener("click", chooseProverbs);
+  let cardsChosen = [];
+  let cardsChosenId = [];
+  let cardsWon = [];
+  let cardsWonPlayer1 = [];
+  let cardsWonPlayer2 = [];
 
-  const chooseMoreBtn = document.getElementById("chooseMore");
-  chooseMoreBtn.addEventListener("click", chooseMore);
+  let playerTurn = "playerOne";
+  let cardsFlipped = 0;
+  let playerTurnH3 = document.getElementById("h3playerTurn");
+  let twoPlayersScore = document.getElementById("twoPlayersScore");
+  let onePlayerScore = document.getElementById("onePlayerScore")
 
-  const refreshBtn = document.getElementById("refreshBtn");
-  refreshBtn.addEventListener("click", refresh);
-
-  const continueBtn = document.getElementById("continueBtn");
-  continueBtn.addEventListener("click", continueGame);
-
-  let addVerseDiv = document.getElementById("addVerseDiv");
-  addVerseDiv.style.display = "block";
-
-  let gameinfo = document.getElementById("game-info");
-  gameinfo.style.display = "none";
-
-  let refCon = document.getElementById("refCon");
-  refCon.style.display = "none";
 
   const cardArrayProverbs = [
     {
@@ -102,7 +104,24 @@ document.addEventListener("DOMContentLoaded", () => {
       reference: "1 Timotei 4:15",
       text: "Pune-ţi pe inimă aceste lucruri, îndeletniceşte-te în totul cu ele, pentru ca înaintarea ta să fie văzută de toţi.",
     },
+    {
+      reference: "Proverbe 13:4",
+      text: "Proverbe 13:4",
+    },
+    {
+      reference: "Proverbe 13:4",
+      text: "Leneşul doreşte mult, şi totuşi, n-are nimic, dar cei harnici se satură. -",
+    },
+    {
+      reference: "2 Corinteni 8:11",
+      text: "Isprăviţi, dar, acum de făcut; pentru ca, după graba voinţei, să fie şi înfăptuirea, potrivit cu mijloacele voastre.",
+    },
+    {
+      reference: "2 Corinteni 8:11",
+      text: "2 Corinteni 8:11",
+    }
   ];
+
 
   let cardArray = [];
 
@@ -112,8 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
     createBoard();
     playerTurnH3.style.display = "block";
     playerTurn = "playerOne";
-    congrats.innerHTML = " ";
-    congratsOne.innerHTML = " ";
+    congrats.display = "none";
+    congratsOne.display = "none";
   }
   function refresh() {
     clearBoard();
@@ -122,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createBoard();
     congrats.innerHTML = " ";
     congratsOne.innerHTML = " ";
-    refCon.style.display = "none";
+    $("#refConBtn").css("display", "none");
   }
 
   function chooseProverbs() {
@@ -278,29 +297,10 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(listP);
   }
 
-  const grid = document.querySelector(".grid");
-  const resultDisplay = document.querySelector("#result");
-  const resultDisplayPlayer1 = document.querySelector("#resultPlayer1");
-  const resultDisplayPlayer2 = document.querySelector("#resultPlayer2");
-  const congrats = document.getElementById("congrats");
-  const congratsOne = document.getElementById("congratsOne");
-  const list = document.getElementById("arrayList");
-
-  let cardsChosen = [];
-  let cardsChosenId = [];
-  let cardsWon = [];
-  let cardsWonPlayer1 = [];
-  let cardsWonPlayer2 = [];
-
-  let playerTurn = "playerOne";
-  let cardsFlipped = 0;
-  let playerTurnH3 = document.getElementById("h3playerTurn");
-  let twoPlayersScore = document.getElementById("twoPlayersScore");
-  let onePlayerScore = document.getElementById("onePlayerScore")
 
   //create your board
   function createBoard() {
-    gameinfo.style.display = "block";
+    $("#game-info").css("display", "block")
     for (let i = 0; i < cardArray.length; i++) {
       const card = document.createElement("div");
       const image = document.createElement("img");
@@ -400,7 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       congratsOne.textContent = "Congratulations! You found them all!";
 
-      refCon.style.display = "block";
+      $("#refConBtn").css("display", "block");
 
       // const refresh = document.getElementById("refresh-btn");
       // refresh.className = 'refresh-btn'
@@ -472,5 +472,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  // prompt('Versetele de la FAST, M2')
+  prompt('Versetele de la FAST, M2')
 });
