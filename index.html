@@ -14,6 +14,13 @@
 
 <body>
   <div class="main">
+    <div id="playersName">
+      <p>Player One Name: <input type="text" id="playerOneNameInput" placeholder="Enter your name here"><input
+          type="checkbox"></p>
+      <p>Player Two Name: <input type="text" id="playerTwoNameInput" placeholder="Enter your name here"><input
+          type="checkbox"></p>
+
+    </div>
     <!-- MENUS -->
     <div class="btnDiv">
       <input type="button" class="btn btn3" id="onePlayer" value="One Player">
@@ -23,19 +30,19 @@
     <div class="btnDiv">
       <input type="button" class="btn btn3" id='chooseFast' value="FAST II">
       <input type="button" class="btn btn4" id='chooseProverbs' value="Proverbs">
-      <input type="button" class="btn btn4" id='chooseMore' value="More">
+      <input type="button" class="btn btn4" id='chooseMore' value="TEST">
 
     </div>
 
     <!-- GAME INFO -->
     <div id="game-info">
       <div id="onePlayerScore">
-        <h3>Score Player 1: <span id="result"></span></h3>
+        <h3>Score <span id="playerOneName"></span>: <span id="result"></span></h3>
         <p><span id="congratsOne"></span></p>
       </div>
       <div id="twoPlayersScore">
-        <h3>Score Player 1: <span id="resultPlayer1"></span></h3>
-        <h3>Score Player 2: <span id="resultPlayer2"></span></h3>
+        <h3>Score <span id="TwoPlayerOneName"></span>: <span id="resultPlayer1"></span></h3>
+        <h3>Score <span id="TwoPlayerTwoName"></span>: <span id="resultPlayer2"></span></h3>
         <h3 id="h3playerTurn"><span id="playerTurn"></span></h3>
         <p><span id="congrats"></span></p>
       </div>
@@ -53,7 +60,8 @@
       <br>
       <input id='text' type="text" placeholder="Text">
       <br>
-      <select id="selectBox" name="cars">
+      <select id="selectBox" ">
+        <option id=" moreOption" value="test">TEST</option>
         <option id="fastOption" value="fast">FAST</option>
         <option id="proverbsOption" value="proverbs">Proverbs</option>
         <option id="mySet1Option" value="mySet1">MySet1</option>
@@ -61,6 +69,7 @@
       </select>
       <br>
       <input type="button" class="btn btn1" id='addVerseBtn' value="Add verse">
+      <input type="button" class="btn btn1" id='createBoard' value="Create Board">
       <br>
       <div id="arrayList">
 

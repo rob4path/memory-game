@@ -3,16 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   $("#onePlayer").click(onePlayer)
   $("#twoPlayers").click(twoPlayers)
-  $("#addVerseBtn").click(addVerse)
   $("#chooseFast").click(chooseFast)
-  $("#chooseProvkerbs").click(chooseProverbs)
+  $("#chooseProverbs").click(chooseProverbs)
   $("#chooseMore").click(chooseMore)
   $("#refreshBtn").click(refresh)
   $("#continueBtn").click(continueGame)
+  $("#addVerseBtn").click(addVerse)
+  $("#createBoard").click(createBoard)
 
   $("#game-info").css("display", "none")
   $("#refConBtn").css("display", "none");
-  $("#addVerseDiv").css("display", "none");
+  $("#addVerseDiv").css("display", "block");
 
   const grid = document.querySelector(".grid");
   const resultDisplay = document.querySelector("#result");
@@ -33,6 +34,21 @@ document.addEventListener("DOMContentLoaded", () => {
   let playerTurnH3 = document.getElementById("h3playerTurn");
   let twoPlayersScore = document.getElementById("twoPlayersScore");
   let onePlayerScore = document.getElementById("onePlayerScore")
+
+  function playersName() {
+    let playerOneNameInput = document.getElementById("playerOneNameInput").value;
+    let playerTwoNameInput = document.getElementById("playerTwoNameInput").value;
+    let playerOneName = document.getElementById("playerOneName");
+    let TwoPlayerOneName = document.getElementById("TwoPlayerOneName");
+    let TwoPlayerTwoName = document.getElementById("TwoPlayerTwoName");
+
+    playerOneName.innerHTML = playerOneNameInput;
+    TwoPlayerOneName.innerHTML = playerOneNameInput;
+
+    TwoPlayerTwoName.innerHTML = playerTwoNameInput;
+    console.log(playerOneNameInput);
+
+  }
 
 
   const cardArrayProverbs = [
@@ -131,17 +147,20 @@ document.addEventListener("DOMContentLoaded", () => {
     createBoard();
     playerTurnH3.style.display = "block";
     playerTurn = "playerOne";
-    congrats.display = "none";
-    congratsOne.display = "none";
+    congrats.style.display = "none";
+    congratsOne.style.display = "none";
   }
   function refresh() {
     clearBoard();
     clearScore();
     shuffleCards();
     createBoard();
+    congrats.style.display = "block";
+    congratsOne.style.display = "block";
     congrats.innerHTML = " ";
     congratsOne.innerHTML = " ";
     $("#refConBtn").css("display", "none");
+
   }
 
   function chooseProverbs() {
@@ -151,18 +170,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function chooseMore() {
     cardArray = cardArrayMore;
-    refresh()
+    clearBoard();
+    clearScore();
+    createBoard();
+    congrats.style.display = "block";
+    congratsOne.style.display = "block";
+    congrats.innerHTML = " ";
+    congratsOne.innerHTML = " ";
+    $("#refConBtn").css("display", "none");
+    playersName()
   }
 
   function chooseFast() {
     cardArray = cardArrayFAST;
     refresh()
   }
-  // function chooseSet() {
-  //   let selectBox = document.getElementById("selectBox");
-  //   let selectedValue = selectBox.options[selectBox.selectedIndex].value;
-  //   console.log(selectedValue);
-  // }
 
   function changeTurn() {
     if (cardsFlipped === 2) {
@@ -265,6 +287,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (selectedValue === "proverbs") {
       cardArray = cardArrayProverbs;
     }
+    if (selectedValue === "test") {
+      cardArray = cardArrayMore;
+    }
     if (selectedValue === "mySet1") {
       cardArray = cardArrayMore;
     }
@@ -297,8 +322,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(listP);
   }
 
-
-  //create your board
   function createBoard() {
     $("#game-info").css("display", "block")
     for (let i = 0; i < cardArray.length; i++) {
@@ -322,14 +345,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
-  //check for matches
   function checkForMatch() {
     const cards = document.querySelectorAll(".card");
     const optionOneId = cardsChosenId[0];
     const optionTwoId = cardsChosenId[1];
 
-    // alert('You have clicked the same image!')
+    // 
     if (optionOneId == optionTwoId) {
+      alert('You have clicked the same image!')
       // get the img and the p with cards[optionOneId].childNodes[0] and cards[optionOneId].childNodes[1]
       imgOptionOne = cards[optionOneId].childNodes[0];
       pOptionOne = cards[optionOneId].childNodes[1];
@@ -390,7 +413,7 @@ document.addEventListener("DOMContentLoaded", () => {
         congrats.textContent = "Congratulations, Player 2!";
       }
       if (cardsWonPlayer1.length === cardsWonPlayer2.length) {
-        congrats.textContent = "Congratulations, both!";
+        congrats.innerHTML = "Congratulations, both!";
       }
       // if (cardsWon = cardArray.lenght / 2) {
 
@@ -472,5 +495,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  prompt('Versetele de la FAST, M2')
+  // prompt('Versetele de la FAST, M2')
 });
