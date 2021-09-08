@@ -12,8 +12,25 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#createBoard").click(createBoard)
 
   $("#game-info").css("display", "none")
-  $("#refConBtn").css("display", "none");
+  $("#refreshContinueBtn").css("display", "none");
   $("#addVerseDiv").css("display", "block");
+
+  const playersNameInput = document.getElementById("playersName");
+  playersNameInput.style.display = "none";
+
+  const playersNameInputMenu = document.getElementById("playersNameInputMenu");
+  playersNameInputMenu.addEventListener("click", function () {
+    playersNameInput.style.display = "block"
+  });
+
+  const playersModeBtn = document.getElementById("playersModeBtn");
+  playersModeBtn.style.display = "none";
+  const chooseSetBtn = document.getElementById("chooseSetBtn");
+  chooseSetBtn.style.display = "none";
+  const addVerseDiv = document.getElementById("addVerseDiv");
+  addVerseDiv.style.display = "none";
+
+
 
   const grid = document.querySelector(".grid");
   const resultDisplay = document.querySelector("#result");
@@ -159,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
     congratsOne.style.display = "block";
     congrats.innerHTML = " ";
     congratsOne.innerHTML = " ";
-    $("#refConBtn").css("display", "none");
+    $("#refreshContinueBtn").css("display", "none");
 
   }
 
@@ -177,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
     congratsOne.style.display = "block";
     congrats.innerHTML = " ";
     congratsOne.innerHTML = " ";
-    $("#refConBtn").css("display", "none");
+    $("#refreshContinueBtn").css("display", "none");
     playersName()
   }
 
@@ -423,7 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       congratsOne.textContent = "Congratulations! You found them all!";
 
-      $("#refConBtn").css("display", "block");
+      $("#refreshContinueBtn").css("display", "block");
 
       // const refresh = document.getElementById("refresh-btn");
       // refresh.className = 'refresh-btn'

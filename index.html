@@ -14,24 +14,28 @@
 
 <body>
   <div class="main">
+
+    <!-- ENTER NAME -->
+    <input type="button" class="btn btn2" id="playersNameInputMenu" value="Players Name">
     <div id="playersName">
       <p>Player One Name: <input type="text" id="playerOneNameInput" placeholder="Enter your name here"><input
           type="checkbox"></p>
       <p>Player Two Name: <input type="text" id="playerTwoNameInput" placeholder="Enter your name here"><input
           type="checkbox"></p>
-
     </div>
-    <!-- MENUS -->
-    <div class="btnDiv">
+
+    <!-- PLAYERS MODE -->
+    <input type="button" class="btn btn2" id="playersModeMenu" value="Players Mode">
+    <div id="playersModeBtn" class="btnDiv">
       <input type="button" class="btn btn3" id="onePlayer" value="One Player">
       <input type="button" class="btn btn4" id="twoPlayers" value="Two Players">
     </div>
-
-    <div class="btnDiv">
+    <!-- CHOOSE SET -->
+    <input type="button" class="btn btn2" id="schooseSetMenu" value="Choose Set">
+    <div id="chooseSetBtn" class="btnDiv">
       <input type="button" class="btn btn3" id='chooseFast' value="FAST II">
       <input type="button" class="btn btn4" id='chooseProverbs' value="Proverbs">
       <input type="button" class="btn btn4" id='chooseMore' value="TEST">
-
     </div>
 
     <!-- GAME INFO -->
@@ -49,12 +53,13 @@
     </div>
     <br>
     <br>
-    <div class="btnDiv" id="refConBtn">
+    <div class="btnDiv" id="refreshContinueBtn">
       <input type="button" class="btn btn2" id="refreshBtn" value="Refresh">
       <input type="button" class="btn btn2" id="continueBtn" value="Continue">
     </div>
 
     <!-- ADD VERSE -->
+    <input type="button" class="btn btn2" id="addVerseMenu" value="Add Verses">
     <div id="addVerseDiv">
       <input id='reference' type="text" placeholder="Reference">
       <br>
@@ -78,6 +83,8 @@
 
 
   </div>
+
+  <!-- FLASHCARDS -->
   <div id="grid" class="grid">
   </div>
   <!-- <input type="button" id='refresh-btn' value="Refresh"> -->
