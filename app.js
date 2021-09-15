@@ -1,4 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+  $("#login").click(login)
+  $("#register").click(register)
+
+  function register() {
+    console.log($("#email").val())
+    console.log($("#password").val())
+    if ($("#password").val().length < 6) {
+      alert("You pw needs to be between 6 and 32 characters!")
+      return
+    }
+
+    $.post('http://localhost:3000/api/auth/register',   // url
+      JSON.stringify({
+        name: $("#username").val(),
+        email: $("#email").val(),
+        password: $("#password").val(),
+      }), // data to be submit
+      function (data, status, jqXHR) {// success callback
+        console.log(data)
+      })
+  }
+
+  function login() {
+
+  }
+
   // VARIABLES
 
   $("#onePlayer").click(onePlayer)
@@ -11,6 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#addVerseBtn").click(addVerse)
   $("#createBoard").click(createBoard)
 
+  $("#login").click(login)
+  $("#register").click(register)
   $("#game-info").css("display", "none")
   $("#refreshContinueBtn").css("display", "none");
   $("#addVerseDiv").css("display", "block");
@@ -24,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const playersModeBtn = document.getElementById("playersModeBtn");
-  playersModeBtn.style.display = "none";
+  playersModeBtn.style.display = "block";
   const chooseSetBtn = document.getElementById("chooseSetBtn");
   chooseSetBtn.style.display = "none";
   const addVerseDiv = document.getElementById("addVerseDiv");

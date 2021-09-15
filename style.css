@@ -9,10 +9,12 @@ body {
   padding: 1px;
 }
 
+
                           /* TEXTs & FONTs */
 .main {
   color: white;
   text-align: center;
+  
 }
 
 .text {
@@ -106,7 +108,8 @@ body {
   padding: 5px 10px;
   cursor: pointer;
   transition: 0.8s;
-  font-size: 100%;
+  font-size: 150%;
+  
 }
 
 /* .container {
