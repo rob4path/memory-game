@@ -3,23 +3,28 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#login").click(login)
   $("#register").click(register)
 
-  function register() {
+  function register(e) {
+    // e.preventDefault() doesn t work for registering twice
+    e.stopImmediatePropagation() // prevent for registering twice
     console.log($("#email").val())
     console.log($("#password").val())
     if ($("#password").val().length < 6) {
       alert("You pw needs to be between 6 and 32 characters!")
-      return
+      return;
     }
 
     $.post('http://localhost:3000/api/auth/register',   // url
-      JSON.stringify({
+      {
         name: $("#username").val(),
         email: $("#email").val(),
         password: $("#password").val(),
-      }), // data to be submit
+      }, // data to be submit
       function (data, status, jqXHR) {// success callback
         console.log(data)
-      })
+      },
+      "application/json"
+    )
+    return false;
   }
 
   function login() {
