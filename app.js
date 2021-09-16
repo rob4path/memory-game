@@ -37,11 +37,20 @@ document.addEventListener("DOMContentLoaded", () => {
         password: $("#password").val(),
       }, // data to be submit
       function (data, status, jqXHR) {  // success callback
-        console.log(data)
+        console.log({ data })
+        console.log({ status })
+        console.log({ jqXHR })
       },
       "application/json"
-    ).fail(function (xhr, status, error) {
-
+    ).done(function (message) {
+      console.log(message)
+      $.get('http://localhost:3000/api/auth/isVlad', function (data) {
+        console.log(data)
+      });
+    }).fail(function (xhr, status, error) {
+      $.get('http://localhost:3000/api/auth/isVlad', function (data) {
+        console.log(data)
+      });
       // console.log(xhr.responseText)
       // console.log(JSON.parse(xhr.responseText))
       // console.log(JSON.parse(xhr.responseText).message)
@@ -239,6 +248,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function chooseProverbs() {
     cardArray = cardArrayProverbs;
     refresh()
+    playersName()
+  }
+
+  function chooseFast() {
+    cardArray = cardArrayFAST;
+    refresh()
+    playersName()
   }
 
   function chooseMore() {
@@ -251,12 +267,6 @@ document.addEventListener("DOMContentLoaded", () => {
     congrats.innerHTML = " ";
     congratsOne.innerHTML = " ";
     $("#refreshContinueBtn").css("display", "none");
-    playersName()
-  }
-
-  function chooseFast() {
-    cardArray = cardArrayFAST;
-    refresh()
     playersName()
   }
 
@@ -375,7 +385,8 @@ document.addEventListener("DOMContentLoaded", () => {
     cardArray.push(newVerse);
     arrayList()
 
-  }
+  } // TODO make textholders for every verse you add so you can add, modify, delete every text
+  // TODO user can create new array
 
   function arrayList() {
     // cardArray.forEach(function (val, i, text) {
