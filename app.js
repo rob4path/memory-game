@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         email: $("#email").val(),
         password: $("#password").val(),
       }, // data to be submit
-      function (data, status, jqXHR) {// success callback
+      function (data, status, jqXHR) {  // success callback
         console.log(data)
       },
       "application/json"
@@ -27,8 +27,30 @@ document.addEventListener("DOMContentLoaded", () => {
     return false;
   }
 
-  function login() {
+  function login(e) {
+    e.stopImmediatePropagation() // prevent for registering twice
 
+    $.post('http://localhost:3000/api/auth/login',   // url
+      {
+        name: $("#username").val(),
+        email: $("#email").val(),
+        password: $("#password").val(),
+      }, // data to be submit
+      function (data, status, jqXHR) {  // success callback
+        console.log(data)
+      },
+      "application/json"
+    ).fail(function (xhr, status, error) {
+
+      // console.log(xhr.responseText)
+      // console.log(JSON.parse(xhr.responseText))
+      // console.log(JSON.parse(xhr.responseText).message)
+      // console.log(xhr.responseText.message)
+      // console.log(status)
+
+      alert(JSON.parse(xhr.responseText).message) // TODO put erorr in a <p></p>
+    })
+    return false;
   }
 
   // VARIABLES
@@ -60,9 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const playersModeBtn = document.getElementById("playersModeBtn");
   playersModeBtn.style.display = "block";
   const chooseSetBtn = document.getElementById("chooseSetBtn");
-  chooseSetBtn.style.display = "none";
+  chooseSetBtn.style.display = "block";
   const addVerseDiv = document.getElementById("addVerseDiv");
-  addVerseDiv.style.display = "none";
+  addVerseDiv.style.display = "block";
 
 
 
@@ -235,6 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function chooseFast() {
     cardArray = cardArrayFAST;
     refresh()
+    playersName()
   }
 
   function changeTurn() {
