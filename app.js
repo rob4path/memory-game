@@ -81,68 +81,47 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#game-info").css("display", "none")
   $("#refreshContinueBtn").css("display", "none");
 
-
-  $("#play").click(function () {
-    $(".register").hide(800);
-    $("#playersName").hide(800);
-    $("#playersModeBtn").hide(800);
-    $("#chooseSetBtn").hide(800);
-    $("#addVerseDiv").hide(800);
-
-
-    if ($("#playerOneNameInput").val() === "") {
-      alert("You must")
-    }
-    if (cardArray = []) {
-      alert("choose set")
-    }
-    else {
-      refresh();
-      playersName();
-      $("#game-info").show(800);
-      $("#grid").show(800);
-    }
-
-
-  });
+  // $(".menu").show();
 
   $("#home").click(function () {
-    $(".register").hide(800);
-    $("#playersName").hide(800);
-    $("#playersModeBtn").hide(800);
-    $("#chooseSetBtn").hide(800);
-    $("#addVerseDiv").hide(800);
-    $("#game-info").hide(800);
-    $("#grid").hide(800);
-    $("#refreshContinueBtn").hide(800);
+    $("#menu").show(500)
+    $(".register").hide(500);
+    $("#playersName").hide(500);
+    $("#playersModeBtn").hide(500);
+    $("#chooseSetBtn").hide(500);
+    $("#addVerseDiv").hide(500);
+    $("#game-info").hide(500);
+    $("#grid").hide(500);
+    $("#refreshContinueBtn").hide(500);
+
   });
 
   $(".register").css("display", "none")
   $("#loginBTN").click(function () {
-    $(".register").toggle(800);
+    $(".register").toggle(500);
   });
 
   $("#playersName").css("display", "none")
   $("#playersNameInputMenu").click(function () {
-    $("#playersName").toggle(800);
+    $("#playersName").toggle(500);
   });
 
   $("#playersModeBtn").css("display", "none")
   $("#playersModeMenu").click(function () {
-    $("#playersModeBtn").toggle(800);
+    $("#playersModeBtn").toggle(500);
   });
 
   $("#chooseSetBtn").css("display", "none")
   $("#chooseSetMenu").click(function () {
-    $("#chooseSetBtn").toggle(800);
+    $("#chooseSetBtn").toggle(500);
   });
 
   $("#addVerseDiv").css("display", "none")
   $("#addVerseMenu").click(function () {
-    $("#addVerseDiv").toggle(800);
+    $("#addVerseDiv").toggle(500);
   });
 
-
+  $("#home").css("display", "none")
 
 
   const playersModeBtn = document.getElementById("playersModeBtn");
@@ -301,8 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function chooseProverbs() {
     cardArray = cardArrayProverbs;
-    refresh()
-    playersName()
+
   }
 
   function chooseFast() {
@@ -651,6 +629,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+
+  $("#play").click(function () {
+
+
+
+    if ($("#playerOneNameInput").val() === "") {
+      console.log("Enter Name")
+    }
+
+    if (cardArray !== cardArrayProverbs ||
+      cardArray !== cardArrayMore ||
+      cardArray !== cardArrayFAST) {
+      console.log("choose set")
+    }
+
+    console.log(cardArray)
+    $(".register").hide(800);
+    $("#playersName").hide(800);
+    $("#playersModeBtn").hide(800);
+    $("#chooseSetBtn").hide(800);
+    $("#addVerseDiv").hide(800);
+    $("#menu").hide(1000)
+    $("#home").show(1000)
+
+    refresh();
+    playersName();
+    $("#game-info").show(800);
+    $("#grid").show(800);
+  });
 
   // prompt('Versetele de la FAST, M2')
 });

@@ -18,73 +18,75 @@
 
   <div class="main">
 
-    <input type="button" class="btn btn2" id="play" value="Play">
+    <div id="menu">
 
-    <!-- REGISTER -->
-    <!-- LOGIN -->
-    <input type="button" class="btn btn2" id="loginBTN" value="Login">
+      <input type="button" class="btn btn2 menu" id="play" value="Play">
 
-    <div class="login">
+      <!-- REGISTER -->
+      <!-- LOGIN -->
+      <input type="button" class="btn btn2 menu" id="loginBTN" value="Login">
 
-    </div>
+      <div class="login">
 
-    <div class="register">
-      <input id='username' type="text" placeholder="Username">
-      <input id='email' type="text" placeholder="Email">
-      <input id='password' type="password" placeholder="password">
-      <p class="text" id="error">ss</p>
-      <br>
-      <input type="button" class="btn btn3" id="login" value="LOGIN">
-      <input type="button" class="btn btn4" id="register" value="REGISTER">
-    </div>
+      </div>
 
-    <!-- ENTER NAME -->
-    <input type="button" class="btn btn2" id="playersNameInputMenu" value="Players Name">
-    <div id="playersName">
-      <p>Player One Name: <input type="text" id="playerOneNameInput" placeholder="Enter your name here"><input
-          type="checkbox"></p>
-      <p>Player Two Name: <input type="text" id="playerTwoNameInput" placeholder="Enter your name here"><input
-          type="checkbox"></p>
-    </div>
+      <div class="register">
+        <input id='username' type="text" placeholder="Username">
+        <input id='email' type="text" placeholder="Email">
+        <input id='password' type="password" placeholder="password">
+        <p class="text" id="error">ss</p>
+        <br>
+        <input type="button" class="btn btn3" id="login" value="LOGIN">
+        <input type="button" class="btn btn4" id="register" value="REGISTER">
+      </div>
 
-    <!-- PLAYERS MODE -->
-    <input type="button" class="btn btn2" id="playersModeMenu" value="Players Mode">
-    <div id="playersModeBtn" class="btnDiv">
-      <input type="button" class="btn btn3" id="onePlayer" value="One Player">
-      <input type="button" class="btn btn4" id="twoPlayers" value="Two Players">
-    </div>
+      <!-- ENTER NAME -->
+      <input type="button" class="btn btn2 menu" id="playersNameInputMenu" value="Players Name">
+      <div id="playersName">
+        <p>Player One Name: <input type="text" id="playerOneNameInput" placeholder="Enter your name here"><input
+            type="checkbox"></p>
+        <p>Player Two Name: <input type="text" id="playerTwoNameInput" placeholder="Enter your name here"><input
+            type="checkbox"></p>
+      </div>
 
-    <!-- CHOOSE SET -->
-    <input type="button" class="btn btn2" id="chooseSetMenu" value="Choose Set">
-    <div id="chooseSetBtn" class="btnDiv">
-      <input type="button" class="btn btn3" id='chooseFast' value="FAST II">
-      <input type="button" class="btn btn4" id='chooseProverbs' value="Proverbs">
-      <input type="button" class="btn btn4" id='chooseMore' value="TEST">
-    </div>
+      <!-- PLAYERS MODE -->
+      <input type="button" class="btn btn2 menu" id="playersModeMenu" value="Players Mode">
+      <div id="playersModeBtn" class="btnDiv">
+        <input type="button" class="btn btn3" id="onePlayer" value="One Player">
+        <input type="button" class="btn btn4" id="twoPlayers" value="Two Players">
+      </div>
 
-    <!-- ADD VERSE -->
-    <input type="button" class="btn btn2" id="addVerseMenu" value="Add Verses">
-    <div id="addVerseDiv">
-      <div id="createInput"></div>
+      <!-- CHOOSE SET -->
+      <input type="button" class="btn btn2 menu" id="chooseSetMenu" value="Choose Set">
+      <div id="chooseSetBtn" class="btnDiv">
+        <input type="button" class="btn btn3" id='chooseFast' value="FAST II">
+        <input type="button" class="btn btn4" id='chooseProverbs' value="Proverbs">
+        <input type="button" class="btn btn4" id='chooseMore' value="TEST">
+      </div>
 
-      <br>
-      <select id="selectBox">
-        <option id=" moreOption" value="test">TEST</option>
-        <option id="fastOption" value="fast">FAST</option>
-        <option id="proverbsOption" value="proverbs">Proverbs</option>
-        <option id="mySet1Option" value="mySet1">MySet1</option>
-        <option id="mySet2Option" value="mySet2">MySet2</option>
-      </select>
-      <br>
-      <input type="button" class="btn btn1" id='addVerseBtn' value="Add verse">
-      <input type="button" class="btn btn1" id='createBoard' value="Create Board">
-      <br>
-      <div id="arrayList">
+      <!-- ADD VERSE -->
+      <input type="button" class="btn btn2 menu" id="addVerseMenu" value="Add Verses">
+      <div id="addVerseDiv">
+        <div id="createInput"></div>
 
+        <br>
+        <select id="selectBox">
+          <option id=" moreOption" value="test">TEST</option>
+          <option id="fastOption" value="fast">FAST</option>
+          <option id="proverbsOption" value="proverbs">Proverbs</option>
+          <option id="mySet1Option" value="mySet1">MySet1</option>
+          <option id="mySet2Option" value="mySet2">MySet2</option>
+        </select>
+        <br>
+        <input type="button" class="btn btn1" id='addVerseBtn' value="Add verse">
+        <input type="button" class="btn btn1" id='createBoard' value="Create Board">
+        <br>
+        <div id="arrayList">
+
+        </div>
       </div>
     </div>
   </div>
-
   <!-- GAME INFO -->
   <div id="game-info">
     <div id="onePlayerScore">
