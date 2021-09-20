@@ -40,22 +40,25 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log({ data })
         console.log({ status })
         console.log({ jqXHR })
+        if ($("#email").val() === "bcrrobby@gmail.com") {
+          console.log("CONGRATS FOR VLAAAAAD")
+        }
       },
       "application/json"
     ).done(function (message) {
       console.log(message)
-      $.get('http://localhost:3000/api/auth/isVlad', function (data) {
-        console.log(data)
-      });
+
     }).fail(function (xhr, status, error) {
-      $.get('http://localhost:3000/api/auth/isVlad', function (data) {
-        console.log(data)
-      });
+
       // console.log(xhr.responseText)
       // console.log(JSON.parse(xhr.responseText))
       // console.log(JSON.parse(xhr.responseText).message)
       // console.log(xhr.responseText.message)
       // console.log(status)
+
+      let errorP = $("#error")
+      let errorVal = JSON.parse(xhr.responseText).message
+      errorP.innerText = errorVal
 
       alert(JSON.parse(xhr.responseText).message) // TODO put erorr in a <p></p>
     })
@@ -74,28 +77,78 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#addVerseBtn").click(addVerse)
   $("#createBoard").click(createBoard)
 
-  $("#login").click(login)
-  $("#register").click(register)
+
   $("#game-info").css("display", "none")
   $("#refreshContinueBtn").css("display", "none");
-  $("#addVerseDiv").css("display", "block");
 
-  const playersNameInput = document.getElementById("playersName");
-  playersNameInput.style.display = "none";
 
-  const playersNameInputMenu = document.getElementById("playersNameInputMenu");
-  playersNameInputMenu.addEventListener("click", function () {
-    playersNameInput.style.display = "block"
+  $("#play").click(function () {
+    $(".register").hide(800);
+    $("#playersName").hide(800);
+    $("#playersModeBtn").hide(800);
+    $("#chooseSetBtn").hide(800);
+    $("#addVerseDiv").hide(800);
+
+
+    if ($("#playerOneNameInput").val() === "") {
+      alert("You must")
+    }
+    if (cardArray = []) {
+      alert("choose set")
+    }
+    else {
+      refresh();
+      playersName();
+      $("#game-info").show(800);
+      $("#grid").show(800);
+    }
+
+
   });
 
+  $("#home").click(function () {
+    $(".register").hide(800);
+    $("#playersName").hide(800);
+    $("#playersModeBtn").hide(800);
+    $("#chooseSetBtn").hide(800);
+    $("#addVerseDiv").hide(800);
+    $("#game-info").hide(800);
+    $("#grid").hide(800);
+    $("#refreshContinueBtn").hide(800);
+  });
+
+  $(".register").css("display", "none")
+  $("#loginBTN").click(function () {
+    $(".register").toggle(800);
+  });
+
+  $("#playersName").css("display", "none")
+  $("#playersNameInputMenu").click(function () {
+    $("#playersName").toggle(800);
+  });
+
+  $("#playersModeBtn").css("display", "none")
+  $("#playersModeMenu").click(function () {
+    $("#playersModeBtn").toggle(800);
+  });
+
+  $("#chooseSetBtn").css("display", "none")
+  $("#chooseSetMenu").click(function () {
+    $("#chooseSetBtn").toggle(800);
+  });
+
+  $("#addVerseDiv").css("display", "none")
+  $("#addVerseMenu").click(function () {
+    $("#addVerseDiv").toggle(800);
+  });
+
+
+
+
   const playersModeBtn = document.getElementById("playersModeBtn");
-  playersModeBtn.style.display = "block";
+  playersModeBtn.style.display = "none";
   const chooseSetBtn = document.getElementById("chooseSetBtn");
-  chooseSetBtn.style.display = "block";
-  const addVerseDiv = document.getElementById("addVerseDiv");
-  addVerseDiv.style.display = "block";
-
-
+  chooseSetBtn.style.display = "none";
 
   const grid = document.querySelector(".grid");
   const resultDisplay = document.querySelector("#result");
@@ -116,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let playerTurnH3 = document.getElementById("h3playerTurn");
   let twoPlayersScore = document.getElementById("twoPlayersScore");
   let onePlayerScore = document.getElementById("onePlayerScore")
+  twoPlayersScore.style.display = "none";
 
   function playersName() {
     let playerOneNameInput = document.getElementById("playerOneNameInput").value;
@@ -253,8 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function chooseFast() {
     cardArray = cardArrayFAST;
-    refresh()
-    playersName()
+
   }
 
   function chooseMore() {
@@ -352,9 +405,28 @@ document.addEventListener("DOMContentLoaded", () => {
   function addVerse() {
     let selectBox = document.getElementById("selectBox");
     let selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    const inputDiv = document.getElementById("createInput")
 
-    const takeReference = document.getElementById("reference").value;
-    const takeText = document.getElementById("text").value;
+    const createDiv = document.createElement("div")
+    createDiv.className = "newText"
+    inputDiv.appendChild(createDiv)
+
+    const takeReference = document.createElement("INPUT")
+    takeReference.setAttribute("type", "text");
+    takeReference.placeholder = "Enter reference"
+    takeReference.id = "reference"
+
+    const takeText = document.createElement("INPUT")
+    takeText.setAttribute("type", "text");
+    takeText.placeholder = "Enter text"
+    takeText.id = "reference"
+
+
+    createDiv.appendChild(takeReference)
+    createDiv.appendChild(takeText)
+
+    // const takeReference = document.getElementById("reference").value;
+    // const takeText = document.getElementById("text").value;
 
     const newReference = {
       reference: takeReference,
@@ -394,7 +466,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // });
     list.innerHTML = " ";
     for (let i = 0; i < cardArray.length; i++) {
-      const addVerseDiv = document.getElementById("addVerseDiv")
+
 
       const listP = document.createElement("p");
       addVerseDiv.appendChild(list)

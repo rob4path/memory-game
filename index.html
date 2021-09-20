@@ -13,22 +13,28 @@
 </head>
 
 <body>
+
+  <input type="button" class="btn btn2" id="home" value="Home">
+
   <div class="main">
 
-    <!-- LOGIN -->
-    <div class="login">
-      <input type="button" class="btn btn3" id="login" value="LOGIN">
-    </div>
-    <br>
-    
-    <!-- REGISTER -->
-    <div class="register">
-<input id='username' type=" text" placeholder="Username">
+    <input type="button" class="btn btn2" id="play" value="Play">
 
+    <!-- REGISTER -->
+    <!-- LOGIN -->
+    <input type="button" class="btn btn2" id="loginBTN" value="Login">
+
+    <div class="login">
+
+    </div>
+
+    <div class="register">
+      <input id='username' type="text" placeholder="Username">
       <input id='email' type="text" placeholder="Email">
       <input id='password' type="password" placeholder="password">
+      <p class="text" id="error">ss</p>
       <br>
-
+      <input type="button" class="btn btn3" id="login" value="LOGIN">
       <input type="button" class="btn btn4" id="register" value="REGISTER">
     </div>
 
@@ -49,41 +55,20 @@
     </div>
 
     <!-- CHOOSE SET -->
-    <input type="button" class="btn btn2" id="schooseSetMenu" value="Choose Set">
+    <input type="button" class="btn btn2" id="chooseSetMenu" value="Choose Set">
     <div id="chooseSetBtn" class="btnDiv">
       <input type="button" class="btn btn3" id='chooseFast' value="FAST II">
       <input type="button" class="btn btn4" id='chooseProverbs' value="Proverbs">
       <input type="button" class="btn btn4" id='chooseMore' value="TEST">
     </div>
 
-    <!-- GAME INFO -->
-    <div id="game-info">
-      <div id="onePlayerScore">
-        <h3>Score <span id="playerOneName"></span>: <span id="result"></span></h3>
-        <p><span id="congratsOne"></span></p>
-      </div>
-      <div id="twoPlayersScore">
-        <h3>Score <span id="TwoPlayerOneName"></span>: <span id="resultPlayer1"></span></h3>
-        <h3>Score <span id="TwoPlayerTwoName"></span>: <span id="resultPlayer2"></span></h3>
-        <h3 id="h3playerTurn"><span id="playerTurn"></span></h3>
-        <p><span id="congrats"></span></p>
-      </div>
-    </div>
-    <br>
-    <br>
-    <div class="btnDiv" id="refreshContinueBtn">
-      <input type="button" class="btn btn2" id="refreshBtn" value="Refresh">
-      <input type="button" class="btn btn2" id="continueBtn" value="Continue">
-    </div>
-
     <!-- ADD VERSE -->
     <input type="button" class="btn btn2" id="addVerseMenu" value="Add Verses">
     <div id="addVerseDiv">
-      <input id='reference' type="text" placeholder="Reference">
+      <div id="createInput"></div>
+
       <br>
-      <input id='text' type="text" placeholder="Text">
-      <br>
-      <select id="selectBox" ">
+      <select id="selectBox">
         <option id=" moreOption" value="test">TEST</option>
         <option id="fastOption" value="fast">FAST</option>
         <option id="proverbsOption" value="proverbs">Proverbs</option>
@@ -98,6 +83,25 @@
 
       </div>
     </div>
+  </div>
+
+  <!-- GAME INFO -->
+  <div id="game-info">
+    <div id="onePlayerScore">
+      <h3>Score <span id="playerOneName"></span>: <span id="result"></span></h3>
+      <p><span id="congratsOne"></span></p>
+    </div>
+    <div id="twoPlayersScore">
+      <h3>Score <span id="TwoPlayerOneName"></span>: <span id="resultPlayer1"></span></h3>
+      <h3>Score <span id="TwoPlayerTwoName"></span>: <span id="resultPlayer2"></span></h3>
+      <h3 id="h3playerTurn"><span id="playerTurn"></span></h3>
+      <p><span id="congrats"></span></p>
+    </div>
+  </div>
+
+  <div class="btnDiv" id="refreshContinueBtn">
+    <input type="button" class="btn btn2" id="refreshBtn" value="Refresh">
+    <input type="button" class="btn btn2" id="continueBtn" value="Continue">
   </div>
 
   <!-- FLASHCARDS -->

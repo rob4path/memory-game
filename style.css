@@ -9,12 +9,26 @@ body {
   padding: 1px;
 }
 
+.createDiv {
+  display: flex;
+  flex-direction: row;
+}
 
                           /* TEXTs & FONTs */
 .main {
-  color: white;
+      display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: white;
   text-align: center;
   
+}
+
+h3 {
+  color: white;
 }
 
 .text {
