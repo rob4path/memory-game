@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // VARIABLES
 
+  // ON CLICK BUTTONS
   $("#onePlayer").click(onePlayer)
   $("#twoPlayers").click(twoPlayers)
   $("#chooseFast").click(chooseFast)
@@ -80,9 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   $("#game-info").css("display", "none")
   $("#refreshContinueBtn").css("display", "none");
-
+  $("#home").css("display", "none")
   // $(".menu").show();
 
+  // HIDE-SHOW TOGGLE MENU
   $("#home").click(function () {
     $("#menu").show(500)
     $(".register").hide(500);
@@ -121,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     $("#addVerseDiv").toggle(500);
   });
 
-  $("#home").css("display", "none")
+
 
 
   const playersModeBtn = document.getElementById("playersModeBtn");
@@ -632,31 +634,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   $("#play").click(function () {
 
-
-
     if ($("#playerOneNameInput").val() === "") {
-      console.log("Enter Name")
+      // alert("Enter Name")
+      $("#playersName").show(500)
     }
 
-    if (cardArray !== cardArrayProverbs ||
-      cardArray !== cardArrayMore ||
+    if (cardArray !== cardArrayProverbs &&
+      cardArray !== cardArrayMore &&
       cardArray !== cardArrayFAST) {
-      console.log("choose set")
+      // alert("Choose set")
+      $("#chooseSetBtn").show(500)
+      // $("#chooseSetBtn").css("display", "block")
+
+
     }
+    else {
+      console.log(cardArray)
+      $(".register").hide(800);
+      $("#playersName").hide(800);
+      $("#playersModeBtn").hide(800);
+      $("#chooseSetBtn").hide(800);
+      $("#addVerseDiv").hide(800);
+      $("#menu").hide(1000)
+      $("#home").show(1000)
 
-    console.log(cardArray)
-    $(".register").hide(800);
-    $("#playersName").hide(800);
-    $("#playersModeBtn").hide(800);
-    $("#chooseSetBtn").hide(800);
-    $("#addVerseDiv").hide(800);
-    $("#menu").hide(1000)
-    $("#home").show(1000)
-
-    refresh();
-    playersName();
-    $("#game-info").show(800);
-    $("#grid").show(800);
+      refresh();
+      playersName();
+      $("#game-info").show(800);
+      $("#grid").show(800);
+    }
   });
 
   // prompt('Versetele de la FAST, M2')

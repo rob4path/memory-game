@@ -29,8 +29,8 @@ body {
     flex-wrap: wrap;
     color: white;
   text-align: center;
-  
 }
+
  #menu {
     display: flex;
     flex-direction: column;
