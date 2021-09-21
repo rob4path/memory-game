@@ -9,11 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log($("#email").val())
     console.log($("#password").val())
     if ($("#password").val().length < 6) {
-      alert("You pw needs to be between 6 and 32 characters!")
+      alertify.set({ delay: 3000 });
+      alertify.error("Your password must be between 6 and 32 characters!");
       return;
     }
 
-    $.post('http://localhost:3000/api/auth/register',   // url
+    $.post('https://rob4path2.herokuapp.com/api/auth/register',   // url
       {
         name: $("#username").val(),
         email: $("#email").val(),
@@ -23,14 +24,22 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(data)
       },
       "application/json"
-    )
+    ).done(function (message) {
+      console.log(message)
+
+    }).fail(function (xhr, status, error) {
+
+      alertify.set({ delay: 3000 });
+      alertify.error(JSON.parse(xhr.responseText).message);
+      // alert(JSON.parse(xhr.responseText).message) // TODO put erorr in a <p></p>
+    })
     return false;
   }
 
   function login(e) {
-    e.stopImmediatePropagation() // prevent for registering twice
+    e.stopImmediatePropagation() // prevent for logining twice
 
-    $.post('http://localhost:3000/api/auth/login',   // url
+    $.post('https://rob4path2.herokuapp.com/api/auth/login',   // url
       {
         name: $("#username").val(),
         email: $("#email").val(),
@@ -56,11 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
       // console.log(xhr.responseText.message)
       // console.log(status)
 
-      let errorP = $("#error")
-      let errorVal = JSON.parse(xhr.responseText).message
-      errorP.innerText = errorVal
 
-      alert(JSON.parse(xhr.responseText).message) // TODO put erorr in a <p></p>
+      alertify.set({ delay: 3000 });
+      alertify.error(JSON.parse(xhr.responseText).message);
+      // alert(JSON.parse(xhr.responseText).message) // TODO put erorr in a <p></p>
     })
     return false;
   }
@@ -76,12 +84,14 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#refreshBtn").click(refresh)
   $("#continueBtn").click(continueGame)
   $("#addVerseBtn").click(addVerse)
+
   $("#createBoard").click(createBoard)
 
 
   $("#game-info").css("display", "none")
   $("#refreshContinueBtn").css("display", "none");
   $("#home").css("display", "none")
+  $("#pushVerseBtn").css("display", "none")
   // $(".menu").show();
 
   // HIDE-SHOW TOGGLE MENU
@@ -95,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     $("#game-info").hide(500);
     $("#grid").hide(500);
     $("#refreshContinueBtn").hide(500);
+    $("#home").hide(500);
 
   });
 
@@ -382,6 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
+
   function addVerse() {
     let selectBox = document.getElementById("selectBox");
     let selectedValue = selectBox.options[selectBox.selectedIndex].value;
@@ -391,51 +403,61 @@ document.addEventListener("DOMContentLoaded", () => {
     createDiv.className = "newText"
     inputDiv.appendChild(createDiv)
 
-    const takeReference = document.createElement("INPUT")
-    takeReference.setAttribute("type", "text");
-    takeReference.placeholder = "Enter reference"
-    takeReference.id = "reference"
+    const takeR = document.createElement("INPUT")
+    takeR.setAttribute("type", "text");
+    takeR.placeholder = "Enter reference"
+    takeR.id = "reference"
 
-    const takeText = document.createElement("INPUT")
-    takeText.setAttribute("type", "text");
-    takeText.placeholder = "Enter text"
-    takeText.id = "reference"
+    const takeT = document.createElement("INPUT")
+    takeT.setAttribute("type", "text");
+    takeT.placeholder = "Enter text"
+    takeT.id = "text"
 
 
-    createDiv.appendChild(takeReference)
-    createDiv.appendChild(takeText)
+    createDiv.appendChild(takeR)
+    createDiv.appendChild(takeT)
 
+    $("#pushVerseBtn").show(500)
+    $("#pushVerseBtn").click(pushVerse)
+
+    function pushVerse() {
+
+      takeText = takeT.value
+      takeReference = takeR.value
+
+      const newReference = {
+        reference: takeReference,
+        text: takeReference,
+      };
+      const newVerse = {
+        reference: takeReference,
+        text: takeText,
+      };
+
+      if (selectedValue === "fast") {
+        cardArray = cardArrayFAST;
+      }
+      if (selectedValue === "proverbs") {
+        cardArray = cardArrayProverbs;
+      }
+      if (selectedValue === "test") {
+        cardArray = cardArrayMore;
+      }
+      if (selectedValue === "mySet1") {
+        cardArray = cardArrayMore;
+      }
+      if (selectedValue === "mySet2") {
+        cardArray = cardArrayMore;
+      }
+      console.log(cardArray);
+      cardArray.push(newReference);
+      cardArray.push(newVerse);
+      arrayList()
+    }
     // const takeReference = document.getElementById("reference").value;
     // const takeText = document.getElementById("text").value;
 
-    const newReference = {
-      reference: takeReference,
-      text: takeReference,
-    };
-    const newVerse = {
-      reference: takeReference,
-      text: takeText,
-    };
 
-    if (selectedValue === "fast") {
-      cardArray = cardArrayFAST;
-    }
-    if (selectedValue === "proverbs") {
-      cardArray = cardArrayProverbs;
-    }
-    if (selectedValue === "test") {
-      cardArray = cardArrayMore;
-    }
-    if (selectedValue === "mySet1") {
-      cardArray = cardArrayMore;
-    }
-    if (selectedValue === "mySet2") {
-      cardArray = cardArrayMore;
-    }
-    console.log(cardArray);
-    cardArray.push(newReference);
-    cardArray.push(newVerse);
-    arrayList()
 
   } // TODO make textholders for every verse you add so you can add, modify, delete every text
   // TODO user can create new array

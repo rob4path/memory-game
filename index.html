@@ -22,7 +22,7 @@
 
     <div id="menu">
 
-      <input type="button" class="btn btn2 menu button large round success" id="play" value="Play">
+      <input type="button" class="btn btn2 menu" id="play" value="Play">
 
       <!-- REGISTER -->
       <!-- LOGIN -->
@@ -33,22 +33,22 @@
       </div>
 
       <div class="register">
+        <div></div>
         <input id='username' type="text" placeholder="Username">
+        <br>
         <input id='email' type="text" placeholder="Email">
+        <br>
         <input id='password' type="password" placeholder="password">
-        <p class="text" id="error">ss</p>
         <br>
         <input type="button" class="btn btn3" id="login" value="LOGIN">
         <input type="button" class="btn btn4" id="register" value="REGISTER">
       </div>
 
-      <!-- ENTER NAME -->
+      <!-- PLAYERS NAME -->
       <input type="button" class="btn btn2 menu" id="playersNameInputMenu" value="Players Name">
       <div id="playersName">
-        <p>Player One Name: <input type="text" id="playerOneNameInput" placeholder="Enter your name here"><input
-            type="checkbox"></p>
-        <p>Player Two Name: <input type="text" id="playerTwoNameInput" placeholder="Enter your name here"><input
-            type="checkbox"></p>
+        <p>Player One Name: <input type="text" id="playerOneNameInput" placeholder="Enter your name here"></p>
+        <p>Player Two Name: <input type="text" id="playerTwoNameInput" placeholder="Enter your name here"></p>
       </div>
 
       <!-- PLAYERS MODE -->
@@ -80,8 +80,9 @@
           <option id="mySet2Option" value="mySet2">MySet2</option>
         </select>
         <br>
-        <input type="button" class="btn btn1" id='addVerseBtn' value="Add verse">
-        <input type="button" class="btn btn1" id='createBoard' value="Create Board">
+        <input type="button" class="btn btn4" id='addVerseBtn' value="Add new verse">
+        <input type="button" class="btn btn4" id='pushVerseBtn' value="Push verses">
+        <input type="button" class="btn btn4" id='createBoard' value="Create Board">
         <br>
         <div id="arrayList">
 
