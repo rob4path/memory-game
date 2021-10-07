@@ -1,5 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
+  function registerState() {
+    const token = localStorage.getItem("token")
+    if (token) {
+      $("#signOutBTN").show()
+      $("#loginBTN").hide()
+      $("#auth").hide()
+    } else {
+      $("#signOutBTN").hide()
 
+    }
+  }
+
+  registerState()
+
+  function signOut() {
+    localStorage.removeItem("token")
+    $("#loginBTN").show()
+    $("#signOutBTN").hide()
+    alertify.set({ delay: 3000 });
+    alertify.success("Good bye!");
+  }
+
+  $("#signOutBTN").click(signOut)
   $("#login").click(login)
   $("#register").click(register)
 
@@ -58,17 +80,25 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(message)
 
     }).fail(function (xhr, status, error) {
+      const token = JSON.parse(xhr.responseText).token
+      localStorage.setItem("token", token)
+      registerState()
+      console.log(JSON.parse(xhr.responseText))
+      console.log(JSON.parse(xhr.responseText).message)
+      console.log(xhr.responseText.message)
+      console.log(status)
 
-      // console.log(xhr.responseText)
-      // console.log(JSON.parse(xhr.responseText))
-      // console.log(JSON.parse(xhr.responseText).message)
-      // console.log(xhr.responseText.message)
-      // console.log(status)
 
+      if (JSON.parse(xhr.responseText).message === "OK") {
+        alertify.set({ delay: 3000 });
 
-      alertify.set({ delay: 3000 });
-      alertify.error(JSON.parse(xhr.responseText).message);
-      // alert(JSON.parse(xhr.responseText).message) // TODO put erorr in a <p></p>
+        alertify.success("Log in succes!");
+      }
+      else {
+        alertify.set({ delay: 3000 });
+
+        alertify.error(JSON.parse(xhr.responseText).message)
+      }
     })
     return false;
   }
@@ -97,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // HIDE-SHOW TOGGLE MENU
   $("#home").click(function () {
     $("#menu").show(500)
-    $(".register").hide(500);
+    $("#auth").hide(500);
     $("#playersName").hide(500);
     $("#playersModeBtn").hide(500);
     $("#chooseSetBtn").hide(500);
@@ -109,9 +139,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 
-  $(".register").css("display", "none")
+  $("#auth").css("display", "none")
   $("#loginBTN").click(function () {
-    $(".register").toggle(500);
+    $("#auth").toggle(500);
   });
 
   $("#playersName").css("display", "none")
@@ -277,6 +307,11 @@ document.addEventListener("DOMContentLoaded", () => {
     playerTurn = "playerOne";
     congrats.style.display = "none";
     congratsOne.style.display = "none";
+    document.getElementById("playerTurn").innerText =
+
+      "Player 1, it's your turn!";
+
+    document.getElementById("playerTurn").style.color = "yellow";
   }
   function refresh() {
     clearBoard();
@@ -406,12 +441,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const takeR = document.createElement("INPUT")
     takeR.setAttribute("type", "text");
     takeR.placeholder = "Enter reference"
-    takeR.id = "reference"
+    takeR.className = "newReference"
 
     const takeT = document.createElement("INPUT")
     takeT.setAttribute("type", "text");
     takeT.placeholder = "Enter text"
-    takeT.id = "text"
+    takeT.className = "newText"
 
 
     createDiv.appendChild(takeR)
@@ -421,38 +456,58 @@ document.addEventListener("DOMContentLoaded", () => {
     $("#pushVerseBtn").click(pushVerse)
 
     function pushVerse() {
+      const kidsList = $("#createInput").children()
+      for (const verse of kidsList) {
 
-      takeText = takeT.value
-      takeReference = takeR.value
+        takeReference = verse.childNodes[0].value
+        takeText = verse.childNodes[1].value
 
-      const newReference = {
-        reference: takeReference,
-        text: takeReference,
-      };
-      const newVerse = {
-        reference: takeReference,
-        text: takeText,
-      };
+        const newReference = {
+          reference: takeReference,
+          text: takeReference,
+        };
+        const newVerse = {
+          reference: takeReference,
+          text: takeText,
+        };
 
-      if (selectedValue === "fast") {
-        cardArray = cardArrayFAST;
+        // if (selectedValue === "fast") {
+        //   cardArray = cardArrayFAST;
+        // }
+        // if (selectedValue === "proverbs") {
+        //   cardArray = cardArrayProverbs;
+        // }
+        // if (selectedValue === "test") {
+        //   cardArray = cardArrayMore;
+        // }
+        // if (selectedValue === "mySet1") {
+        //   cardArray = cardArrayMore; c
+        // }
+        // if (selectedValue === "mySet2") {
+        //   cardArray = cardArrayMore;
+        // }
+
+        switch (selectedValue) {
+          case "fast":
+            cardArray = cardArrayFAST;
+            break;
+          case "proverbs":
+            cardArray = cardArrayProverbs;
+            break;
+          case "test":
+            cardArray = cardArrayMore;
+            break;
+          case "mySet1":
+          case "mySet2":
+          default:
+            cardArray = cardArrayMore;
+            break;
+        }
+        console.log(cardArray);
+        cardArray.push(newReference);
+        cardArray.push(newVerse);
+        arrayList()
       }
-      if (selectedValue === "proverbs") {
-        cardArray = cardArrayProverbs;
-      }
-      if (selectedValue === "test") {
-        cardArray = cardArrayMore;
-      }
-      if (selectedValue === "mySet1") {
-        cardArray = cardArrayMore;
-      }
-      if (selectedValue === "mySet2") {
-        cardArray = cardArrayMore;
-      }
-      console.log(cardArray);
-      cardArray.push(newReference);
-      cardArray.push(newVerse);
-      arrayList()
     }
     // const takeReference = document.getElementById("reference").value;
     // const takeText = document.getElementById("text").value;
@@ -478,7 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     }
-    console.log(listP);
+
   }
 
   function createBoard() {
@@ -511,7 +566,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 
     if (optionOneId == optionTwoId) {
-      alert('You have clicked the same image!')
+      alertify.set({ delay: 3000 });
+      alertify.error("You have cliked the same image!");
       // get the img and the p with cards[optionOneId].childNodes[0] and cards[optionOneId].childNodes[1]
       imgOptionOne = cards[optionOneId].childNodes[0];
       pOptionOne = cards[optionOneId].childNodes[1];
@@ -675,7 +731,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     else {
       console.log(cardArray)
-      $(".register").hide(800);
+      $("#auth").hide(800);
       $("#playersName").hide(800);
       $("#playersModeBtn").hide(800);
       $("#chooseSetBtn").hide(800);
