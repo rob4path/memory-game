@@ -507,15 +507,43 @@ document.addEventListener("DOMContentLoaded", () => {
         cardArray.push(newReference);
         cardArray.push(newVerse);
         arrayList()
+        // serviceAddVerse(newReference, newVerse)
+    
       }
     }
     // const takeReference = document.getElementById("reference").value;
     // const takeText = document.getElementById("text").value;
-
-
-
   } // TODO make textholders for every verse you add so you can add, modify, delete every text
   // TODO user can create new array
+
+  function serviceAddVerse(reference, verse) {
+    $.post('https://rob4path2.herokuapp.com/api/verses',   // url
+      {
+        reference: reference,
+        verse: verse
+      }, // data to be submitted
+      function (data, status, jqXHR) {  // success callback
+        console.log({ data })
+        console.log({ status })
+        console.log({ jqXHR })
+        if ($("#email").val() === "bcrrobby@gmail.com") {
+          console.log("CONGRATS FOR VLAAAAAD")
+        }
+      },
+      "application/json"
+    ).done(function (message) {
+      console.log(message)
+
+    }).fail(function (xhr, status, error) {
+     
+      console.log(JSON.parse(xhr.responseText))
+      console.log(JSON.parse(xhr.responseText).message)
+      console.log(xhr.responseText.message)
+      console.log(status)
+
+    })
+
+  }
 
   function arrayList() {
     // cardArray.forEach(function (val, i, text) {
