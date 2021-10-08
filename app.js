@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   function registerState() {
-    const token = localStorage.getItem("token")
-    if (token) {
+    const token = localStorage.getItem("token") 
+    if (token && token != "undefined") {
       $("#signOutBTN").show()
       $("#loginBTN").hide()
       $("#auth").hide()
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       alertify.set({ delay: 3000 });
       alertify.error(JSON.parse(xhr.responseText).message);
-      // alert(JSON.parse(xhr.responseText).message) // TODO put erorr in a <p></p>
+
     })
     return false;
   }
