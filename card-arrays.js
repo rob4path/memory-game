@@ -17,7 +17,7 @@
       text: "Daca ne marturisim pacatele El este credincios si drept ca sa ne ierte toate pacatele si sa ne ierte de orice nelegiuire",
     },
   ];
-  const cardArrayMore = [
+  const cardArrayTest = [
     {
       reference: "....",
       text: ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .... ...... ...... ..... ...... ... .... ....... .. ........................",

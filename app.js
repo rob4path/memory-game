@@ -1,107 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  function registerState() {
-    const token = localStorage.getItem("token") 
-    if (token && token != "undefined") {
-      $("#signOutBTN").show()
-      $("#loginBTN").hide()
-      $("#auth").hide()
-    } else {
-      $("#signOutBTN").hide()
-
-    }
-  }
- 
+  
   registerState()
-
-  function signOut() {
-    localStorage.removeItem("token")
-    $("#loginBTN").show()
-    $("#signOutBTN").hide()
-    alertify.set({ delay: 3000 });
-    alertify.success("Good bye!");
-  }
 
   $("#signOutBTN").click(signOut)
   $("#login").click(login)
   $("#register").click(register)
 
-  function register(e) {
-    // e.preventDefault() doesn t work for registering twice
-    e.stopImmediatePropagation() // prevent for registering twice
-    console.log($("#email").val())
-    console.log($("#password").val())
-    if ($("#password").val().length < 6) {
-      alertify.set({ delay: 3000 });
-      alertify.error("Your password must be between 6 and 32 characters!");
-      return;
-    }
-
-    $.post('https://rob4path2.herokuapp.com/api/auth/register',   // url
-      {
-        name: $("#username").val(),
-        email: $("#email").val(),
-        password: $("#password").val(),
-      }, // data to be submit
-      function (data, status, jqXHR) {  // success callback
-        console.log(data)
-      },
-      "application/json"
-    ).done(function (message) {
-      console.log(message)
-
-    }).fail(function (xhr, status, error) {
-
-      alertify.set({ delay: 3000 });
-      alertify.error(JSON.parse(xhr.responseText).message);
-
-    })
-    return false;
-  }
-
-  function login(e) {
-    e.stopImmediatePropagation() // prevent for logining twice
-
-    $.post('https://rob4path2.herokuapp.com/api/auth/login',   // url
-      {
-        name: $("#username").val(),
-        email: $("#email").val(),
-        password: $("#password").val(),
-      }, // data to be submit
-      function (data, status, jqXHR) {  // success callback
-        console.log({ data })
-        console.log({ status })
-        console.log({ jqXHR })
-        if ($("#email").val() === "bcrrobby@gmail.com") {
-          console.log("CONGRATS FOR VLAAAAAD")
-        }
-      },
-      "application/json"
-    ).done(function (message) {
-      console.log(message)
-
-    }).fail(function (xhr, status, error) {
-      const token = JSON.parse(xhr.responseText).token
-      localStorage.setItem("token", token)
-      registerState()
-      console.log(JSON.parse(xhr.responseText))
-      console.log(JSON.parse(xhr.responseText).message)
-      console.log(xhr.responseText.message)
-      console.log(status)
-
-
-      if (JSON.parse(xhr.responseText).message === "OK") {
-        alertify.set({ delay: 3000 });
-
-        alertify.success("Log in succes!");
-      }
-      else {
-        alertify.set({ delay: 3000 });
-
-        alertify.error(JSON.parse(xhr.responseText).message)
-      }
-    })
-    return false;
-  }
+ 
 
   // VARIABLES
 
@@ -113,8 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#chooseMore").click(chooseMore)
   $("#refreshBtn").click(refresh)
   $("#continueBtn").click(continueGame)
-  $("#addVerseBtn").click(addVerse)
+  $("#addVerseBtn").click(function() {addVerse('createInput')})
   $("#createBoard").click(createBoard)
+  $("#pushVerseBtn").click(pushVerse)
 
 
   $("#game-info").css("display", "none")
@@ -160,9 +66,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   $("#addVerseDiv").css("display", "none")
   $("#addVerseMenu").click(function () {
-    $("#addVerseDiv").toggle(500);
+  $("#addVerseDiv").toggle(500);
+  showCardArrayVerses(cardArrayProverbs)
   });
 
+  function showCardArrayVerses(array) {
+    for (const verse of array) {
+      if (verse.text === verse.reference) {
+        continue;
+      }
+      const {textInput, referenceInput} = addVerse('arrayInput');
+      // const result = addVerse()
+      // const textInput = result.textInput
+      // const referenceInput = result.referenceInput
+
+
+      textInput.value = verse.text
+      referenceInput.value = verse.reference
+      
+    }
+  }
 
 
 
@@ -177,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultDisplayPlayer2 = document.querySelector("#resultPlayer2");
   const congrats = document.getElementById("congrats");
   const congratsOne = document.getElementById("congratsOne");
-  const list = document.getElementById("arrayList");
+
 
   let cardsChosen = [];
   let cardsChosenId = [];
@@ -203,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     TwoPlayerOneName.innerHTML = playerOneNameInput;
 
     TwoPlayerTwoName.innerHTML = playerTwoNameInput;
-    console.log(playerOneNameInput);
+
 
   }
 
@@ -249,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function chooseMore() {
-    cardArray = cardArrayMore;
+    cardArray = cardArrayTest;
     clearBoard();
     clearScore();
     createBoard();
@@ -337,14 +260,10 @@ document.addEventListener("DOMContentLoaded", () => {
     onePlayerScore.style.display = "none";
     congrats.innerHTML = " ";
     congratsOne.innerHTML = " ";
-
   }
 
-
-  function addVerse() {
-    let selectBox = document.getElementById("selectBox");
-    let selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    const inputDiv = document.getElementById("createInput")
+  function addVerse(divId = 'createInput') {
+    const inputDiv = document.getElementById(divId)
 
     const createDiv = document.createElement("div")
     createDiv.className = "newText"
@@ -360,73 +279,64 @@ document.addEventListener("DOMContentLoaded", () => {
     takeT.placeholder = "Enter text"
     takeT.className = "newText"
 
-
     createDiv.appendChild(takeR)
     createDiv.appendChild(takeT)
 
     $("#pushVerseBtn").show(500)
-    $("#pushVerseBtn").click(pushVerse)
-
-    function pushVerse() {
-      const kidsList = $("#createInput").children()
-      for (const verse of kidsList) {
-
-        takeReference = verse.childNodes[0].value
-        takeText = verse.childNodes[1].value
-
-        const newReference = {
-          reference: takeReference,
-          text: takeReference,
-        };
-        const newVerse = {
-          reference: takeReference,
-          text: takeText,
-        };
-
-        // if (selectedValue === "fast") {
-        //   cardArray = cardArrayFAST;
-        // }
-        // if (selectedValue === "proverbs") {
-        //   cardArray = cardArrayProverbs;
-        // }
-        // if (selectedValue === "test") {
-        //   cardArray = cardArrayMore;
-        // }
-        // if (selectedValue === "mySet1") {
-        //   cardArray = cardArrayMore; c
-        // }
-        // if (selectedValue === "mySet2") {
-        //   cardArray = cardArrayMore;
-        // }
-
-        switch (selectedValue) {
-          case "fast":
-            cardArray = cardArrayFAST;
-            break;
-          case "proverbs":
-            cardArray = cardArrayProverbs;
-            break;
-          case "test":
-            cardArray = cardArrayMore;
-            break;
-          case "mySet1":
-          case "mySet2":
-          default:
-            cardArray = cardArrayMore;
-            break;
-        }
-        console.log(cardArray);
-        cardArray.push(newReference);
-        cardArray.push(newVerse);
-        arrayList()
-        // serviceAddVerse(newReference, newVerse)
     
-      }
-    }
+    return {textInput: takeT, referenceInput: takeR};
     // const takeReference = document.getElementById("reference").value;
     // const takeText = document.getElementById("text").value;
   } // TODO make textholders for every verse you add so you can add, modify, delete every text
   // TODO user can create new array
+
+
+  function pushVerse() {
+    let selectBox = document.getElementById("selectBox");
+    let selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    const kidsList = $("#createInput").children()
+    for (const verse of kidsList) {
+
+      takeReference = verse.childNodes[0].value
+      takeText = verse.childNodes[1].value
+
+      const newReference = {
+        reference: takeReference,
+        text: takeReference,
+      };
+      const newVerse = {
+        reference: takeReference,
+        text: takeText,
+      };
+
+    // set card array to the chosen one
+      switch (selectedValue) {
+        case "fast":
+          cardArray = cardArrayFAST;
+          break;
+        case "proverbs":
+          cardArray = cardArrayProverbs;
+          break;
+        case "test":
+          cardArray = cardArrayTest;
+          break;
+        case "mySet1":
+        case "mySet2":
+        default:
+          cardArray = cardArrayTest;
+          break;
+      }
+
+      // add verse to array
+      cardArray.push(newReference);
+      cardArray.push(newVerse);
+      console.log(cardArrayFAST);
+      // serviceAddVerse(newReference, newVerse)
+  
+    }
+  }
+
+
 
   function serviceAddVerse(reference, verse) {
     $.post('https://rob4path2.herokuapp.com/api/verses',   // url
@@ -457,24 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
-  function arrayList() {
-    // cardArray.forEach(function (val, i, text) {
-    //   document.write(i + ": " + val + "<br>");
-    // });
-    list.innerHTML = " ";
-    for (let i = 0; i < cardArray.length; i++) {
-
-
-      const listP = document.createElement("p");
-      addVerseDiv.appendChild(list)
-      list.appendChild(listP)
-
-      listP.innerHTML = cardArray[i].reference
-
-
-    }
-
-  }
+  
 
   function createBoard() {
     $("#game-info").css("display", "block")
@@ -660,7 +553,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (cardArray !== cardArrayProverbs &&
-      cardArray !== cardArrayMore &&
+      cardArray !== cardArrayTest &&
       cardArray !== cardArrayFAST) {
       // alert("Choose set")
       $("#chooseSetBtn").show(500)
