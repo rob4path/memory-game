@@ -209,6 +209,8 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsWonPlayer2 = [];
     playerTurnH3.style.display = "block";
     changeTurnPlayerOne()
+    cardsChosen = [];
+    cardsChosenId = [];
   }
 
   function clearBoard() {
@@ -405,9 +407,8 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsFlipped++;
     if (cardsFlipped === 3) {
       const cards = document.querySelectorAll(".card");
+      if (cardsChosen[0] !== cardsChosen[1]) {
       const optionOneId = cardsChosenId[0];
-      if (cardsChosenId[0] === cardsChosenId[1]) {
-
         const optionTwoId = cardsChosenId[1];
         imgOptionOne = cards[optionOneId].childNodes[0];
         pOptionOne = cards[optionOneId].childNodes[1];
