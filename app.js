@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  
+
   registerState()
 
   $("#signOutBTN").click(signOut)
   $("#login").click(login)
   $("#register").click(register)
 
- 
+
 
   // VARIABLES
 
@@ -18,15 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#chooseMore").click(chooseMore)
   $("#refreshBtn").click(refresh)
   $("#continueBtn").click(continueGame)
-  $("#addVerseBtn").click(function() {addVerse('createInput')})
+  $("#addVerseBtn").click(function () { addVerse('createInput') })
   $("#createBoard").click(createBoard)
-  $("#pushVerseBtn").click(pushVerse)
+  $("#pushVerseBtn").click(pushVerses)
 
 
   $("#game-info").css("display", "none")
   $("#refreshContinueBtn").css("display", "none");
   $("#home").css("display", "none")
   $("#pushVerseBtn").css("display", "none")
+  $("#selectBox").change(changeSet)
   // $(".menu").show();
 
   // HIDE-SHOW TOGGLE MENU
@@ -66,26 +67,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   $("#addVerseDiv").css("display", "none")
   $("#addVerseMenu").click(function () {
-  $("#addVerseDiv").toggle(500);
-  showCardArrayVerses(cardArrayProverbs)
+    $("#addVerseDiv").toggle(500);
+    showCardArrayVerses(cardArrayTest)
   });
 
-  function showCardArrayVerses(array) {
-    for (const verse of array) {
-      if (verse.text === verse.reference) {
-        continue;
-      }
-      const {textInput, referenceInput} = addVerse('arrayInput');
-      // const result = addVerse()
-      // const textInput = result.textInput
-      // const referenceInput = result.referenceInput
 
 
-      textInput.value = verse.text
-      referenceInput.value = verse.reference
-      
-    }
-  }
+
 
 
 
@@ -142,11 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     playerTurn = "playerOne";
     congrats.style.display = "none";
     congratsOne.style.display = "none";
-    document.getElementById("playerTurn").innerText =
-
-      "Player 1, it's your turn!";
-
-    document.getElementById("playerTurn").style.color = "yellow";
+    changeTurnPlayerOne()
   }
   function refresh() {
     clearBoard();
@@ -183,19 +167,30 @@ document.addEventListener("DOMContentLoaded", () => {
     $("#refreshContinueBtn").css("display", "none");
     playersName()
   }
+  function changeTurnPlayerOne() {
+    let playerOneNameInput = document.getElementById("playerOneNameInput").value;
 
+    playerTurn = "playerOne";
+    document.getElementById("playerTurn").innerText =
+      `${playerOneNameInput}, it's your turn!`;
+
+    document.getElementById("playerTurn").style.color = "yellow";
+  }
+  function changeTurnPlayerTwo() {
+    let playerTwoNameInput = document.getElementById("playerTwoNameInput").value;
+
+    playerTurn = "playerTwo";
+    document.getElementById("playerTurn").innerText =
+      `${playerTwoNameInput}, it's your turn!`;
+
+    document.getElementById("playerTurn").style.color = "green";
+  }
   function changeTurn() {
     if (cardsFlipped === 2) {
       if (playerTurn === "playerOne") {
-        playerTurn = "playerTwo";
-        document.getElementById("playerTurn").innerText =
-          "Player 2, it's your turn!";
-        document.getElementById("playerTurn").style.color = "green";
+        changeTurnPlayerTwo()
       } else {
-        playerTurn = "playerOne";
-        document.getElementById("playerTurn").innerText =
-          "Player 1, it's your turn!";
-        document.getElementById("playerTurn").style.color = "yellow";
+        changeTurnPlayerOne()
       }
 
       cardsFlipped = 0;
@@ -214,10 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsWonPlayer1 = [];
     cardsWonPlayer2 = [];
     playerTurnH3.style.display = "block";
-    playerTurn = "playerOne";
-    document.getElementById("playerTurn").innerText =
-      "Player 1, it's your turn!";
-    document.getElementById("playerTurn").style.color = "yellow";
+    changeTurnPlayerOne()
   }
 
   function clearBoard() {
@@ -262,112 +254,8 @@ document.addEventListener("DOMContentLoaded", () => {
     congratsOne.innerHTML = " ";
   }
 
-  function addVerse(divId = 'createInput') {
-    const inputDiv = document.getElementById(divId)
-
-    const createDiv = document.createElement("div")
-    createDiv.className = "newText"
-    inputDiv.appendChild(createDiv)
-
-    const takeR = document.createElement("INPUT")
-    takeR.setAttribute("type", "text");
-    takeR.placeholder = "Enter reference"
-    takeR.className = "newReference"
-
-    const takeT = document.createElement("INPUT")
-    takeT.setAttribute("type", "text");
-    takeT.placeholder = "Enter text"
-    takeT.className = "newText"
-
-    createDiv.appendChild(takeR)
-    createDiv.appendChild(takeT)
-
-    $("#pushVerseBtn").show(500)
-    
-    return {textInput: takeT, referenceInput: takeR};
-    // const takeReference = document.getElementById("reference").value;
-    // const takeText = document.getElementById("text").value;
-  } // TODO make textholders for every verse you add so you can add, modify, delete every text
-  // TODO user can create new array
 
 
-  function pushVerse() {
-    let selectBox = document.getElementById("selectBox");
-    let selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    const kidsList = $("#createInput").children()
-    for (const verse of kidsList) {
-
-      takeReference = verse.childNodes[0].value
-      takeText = verse.childNodes[1].value
-
-      const newReference = {
-        reference: takeReference,
-        text: takeReference,
-      };
-      const newVerse = {
-        reference: takeReference,
-        text: takeText,
-      };
-
-    // set card array to the chosen one
-      switch (selectedValue) {
-        case "fast":
-          cardArray = cardArrayFAST;
-          break;
-        case "proverbs":
-          cardArray = cardArrayProverbs;
-          break;
-        case "test":
-          cardArray = cardArrayTest;
-          break;
-        case "mySet1":
-        case "mySet2":
-        default:
-          cardArray = cardArrayTest;
-          break;
-      }
-
-      // add verse to array
-      cardArray.push(newReference);
-      cardArray.push(newVerse);
-      console.log(cardArrayFAST);
-      // serviceAddVerse(newReference, newVerse)
-  
-    }
-  }
-
-
-
-  function serviceAddVerse(reference, verse) {
-    $.post('https://rob4path2.herokuapp.com/api/verses',   // url
-      {
-        reference: reference,
-        verse: verse
-      }, // data to be submitted
-      function (data, status, jqXHR) {  // success callback
-        console.log({ data })
-        console.log({ status })
-        console.log({ jqXHR })
-        if ($("#email").val() === "bcrrobby@gmail.com") {
-          console.log("CONGRATS FOR VLAAAAAD")
-        }
-      },
-      "application/json"
-    ).done(function (message) {
-      console.log(message)
-
-    }).fail(function (xhr, status, error) {
-     
-      console.log(JSON.parse(xhr.responseText))
-      console.log(JSON.parse(xhr.responseText).message)
-      console.log(xhr.responseText.message)
-      console.log(status)
-
-    })
-
-  }
-
-  
 
   function createBoard() {
     $("#game-info").css("display", "block")
@@ -442,15 +330,17 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsChosen = [];
     cardsChosenId = [];
 
+    // display score
+    // 2 players
     if (playerTurn === "playerOne") {
       resultDisplayPlayer1.textContent = cardsWonPlayer1.length;
     } else {
       resultDisplayPlayer2.textContent = cardsWonPlayer2.length;
     }
-
+    // 1 player
     resultDisplay.textContent = cardsWon.length;
 
-    if (
+    if ( // finished
       cardsWonPlayer1.length + cardsWonPlayer2.length ===
       cardArray.length / 2
     ) {
@@ -550,6 +440,8 @@ document.addEventListener("DOMContentLoaded", () => {
       $("#playersName").show(500)
       alertify.set({ delay: 5000 });
       alertify.error("Please enter your name!");
+      $("#playerOneNameInput").val("Nobody 1");
+      $("#playerTwoNameInput").val("Nobody 2");
     }
 
     if (cardArray !== cardArrayProverbs &&
