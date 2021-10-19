@@ -193,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
         changeTurnPlayerOne()
       }
 
-      cardsFlipped = 0;
     }
   }
 
@@ -284,6 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".card");
     const optionOneId = cardsChosenId[0];
     const optionTwoId = cardsChosenId[1];
+    let matchFound = false;
 
     // 
     if (optionOneId == optionTwoId) {
@@ -301,8 +301,8 @@ document.addEventListener("DOMContentLoaded", () => {
       pOptionTwo.style.display = "none";
       // image will be displayed
     } else if (cardsChosen[0] === cardsChosen[1]) {
-      // alert('You found a match')
-
+      // found a match
+      matchFound = true;
       cards[optionOneId].className += "matched ";
       cards[optionTwoId].className += "matched ";
       cards[optionOneId].removeEventListener("click", flipCard);
@@ -316,19 +316,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       cardsWon.push(cardsChosen);
     } else {
-      imgOptionOne = cards[optionOneId].childNodes[0];
-      pOptionOne = cards[optionOneId].childNodes[1];
-      imgOptionTwo = cards[optionTwoId].childNodes[0];
-      pOptionTwo = cards[optionTwoId].childNodes[1];
-      imgOptionOne.style.display = "block";
-      pOptionOne.style.display = "none";
-      imgOptionTwo.style.display = "block";
-      pOptionTwo.style.display = "none";
 
       // alert('Sorry, try again')
     }
-    cardsChosen = [];
-    cardsChosenId = [];
+
 
     // display score
     // 2 players
@@ -371,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // fresh.appendChild(refresh)
     }
-
+    return matchFound;
   }
 
   function shuffleCards() {
@@ -412,9 +403,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function flipCard() {
     cardsFlipped++;
-    if (cardsChosen.length > 1) {
-      return;
+    if (cardsFlipped === 3) {
+      const cards = document.querySelectorAll(".card");
+      const optionOneId = cardsChosenId[0];
+      if (cardsChosenId[0] === cardsChosenId[1]) {
+
+        const optionTwoId = cardsChosenId[1];
+        imgOptionOne = cards[optionOneId].childNodes[0];
+        pOptionOne = cards[optionOneId].childNodes[1];
+        imgOptionTwo = cards[optionTwoId].childNodes[0];
+        pOptionTwo = cards[optionTwoId].childNodes[1];
+        imgOptionOne.style.display = "block";
+        pOptionOne.style.display = "none";
+        imgOptionTwo.style.display = "block";
+        pOptionTwo.style.display = "none";
+      }
+
+      cardsChosen = [];
+      cardsChosenId = [];
+      cardsFlipped = 1;
     }
+
     let cardId = this.getAttribute("data-id");
     cardsChosen.push(cardArray[cardId].reference);
     cardsChosenId.push(cardId);
@@ -425,11 +434,12 @@ document.addEventListener("DOMContentLoaded", () => {
     text.style.display = "block";
     // set the display of the img to none and of the p to block
     if (cardsChosen.length === 2) {
-      setTimeout(function () {
-        checkForMatch();
+      const matchFound = checkForMatch();
+      if (!matchFound) {
         changeTurn();
-      }, 400);
+      }
     }
+
   }
 
 
