@@ -156,9 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsFlipped = 0;
     cardsChosen = [];
     cardsChosenId = [];
-    cardsWon = [];
-    cardsWonPlayer1 = [];
-    cardsWonPlayer2 = [];
+  
   }
   function refresh() {
     clearBoard();
