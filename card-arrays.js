@@ -1,5 +1,5 @@
 
-  const cardArrayProverbs = [
+  let cardArrayProverbs = [
     {
       reference: "1 Ioan 2:6",
       text: "1 Ioan 2:6",
@@ -17,7 +17,7 @@
       text: "Daca ne marturisim pacatele El este credincios si drept ca sa ne ierte toate pacatele si sa ne ierte de orice nelegiuire",
     },
   ];
-  const cardArrayTest = [
+  let cardArrayTest = [
     {
       reference: "....",
       text: ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .... ...... ...... ..... ...... ... .... ....... .. ........................",
@@ -35,7 +35,7 @@
       text: "O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O  OOOOOOOO  OOOOO OO OOO OOO OO OOOOOOOOOOOOOOOOOOOOOOOOO",
     },
   ];
-  const cardArrayFAST = [
+  let cardArrayFAST = [
     {
       reference: "Ps. 143:8",
       text: "Ps. 143:8",
@@ -85,3 +85,18 @@
       text: "2 Corinteni 8:11",
     }
   ];
+
+  function chooseProverbs() {
+    cardArray = cardArrayProverbs;
+
+  }
+
+  function chooseFast() {
+    cardArray = cardArrayFAST;
+
+  }
+
+  function chooseMore() {
+    cardArray = cardArrayTest;
+
+  }

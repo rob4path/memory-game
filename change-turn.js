@@ -1,3 +1,13 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const grid = document.querySelector(".grid");
+  const resultDisplay = document.querySelector("#result");
+  const resultDisplayPlayer1 = document.querySelector("#resultPlayer1");
+  const resultDisplayPlayer2 = document.querySelector("#resultPlayer2");
+  const congrats = document.getElementById("congrats");
+  const congratsOne = document.getElementById("congratsOne");
+});
+
+
 function changeTurnPlayerOne() {
     let playerOneNameInput = document.getElementById("playerOneNameInput").value;
 
@@ -27,29 +37,17 @@ function changeTurnPlayerOne() {
     }
   }
 
-  function onePlayer() {
-    clearBoard();
-    clearScore();
-    cardsWonPlayer1 = cardsWon;
-    cardsWonPlayer2 = cardsWon;
-    resultDisplay.style.display = "contents";
-    resultDisplayPlayer1.style.display = "none";
-    resultDisplayPlayer2.style.display = "none";
-    twoPlayersScore.style.display = "none";
-    onePlayerScore.style.display = "contents";
-    congrats.innerHTML = " ";
-    congratsOne.innerHTML = " ";
 
-  }
 
-  function twoPlayers() {
-    clearBoard();
-    clearScore();
-    resultDisplay.style.display = "none";
-    resultDisplayPlayer1.style.display = "contents";
-    resultDisplayPlayer2.style.display = "contents";
-    twoPlayersScore.style.display = "contents";
-    onePlayerScore.style.display = "none";
-    congrats.innerHTML = " ";
-    congratsOne.innerHTML = " ";
+  function playersName() {
+    let playerOneNameInput = document.getElementById("playerOneNameInput").value;
+    let playerTwoNameInput = document.getElementById("playerTwoNameInput").value;
+    let playerOneName = document.getElementById("playerOneName");
+    let TwoPlayerOneName = document.getElementById("TwoPlayerOneName");
+    let TwoPlayerTwoName = document.getElementById("TwoPlayerTwoName");
+
+    playerOneName.innerHTML = playerOneNameInput;
+    TwoPlayerOneName.innerHTML = playerOneNameInput;
+
+    TwoPlayerTwoName.innerHTML = playerTwoNameInput;
   }

@@ -7,14 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const congratsOne = document.getElementById("congratsOne");
 
 
-  let cardsChosen = [];
-  let cardsChosenId = [];
-  let cardsWon = [];
-  let cardsWonPlayer1 = [];
-  let cardsWonPlayer2 = [];
-
-  let playerTurn = "playerOne";
-  let cardsFlipped = 0;
+  
   let playerTurnH3 = document.getElementById("h3playerTurn");
   let twoPlayersScore = document.getElementById("twoPlayersScore");
   let onePlayerScore = document.getElementById("onePlayerScore")

@@ -1,5 +1,5 @@
 function changeSet() {
-    // TODO remove all others that were before in createInput div
+    
     $("#createInput").html(" ")
     let selectBox = document.getElementById("selectBox");
     let selectedSet = selectBox.options[selectBox.selectedIndex].value;
@@ -12,10 +12,6 @@ function changeSet() {
             cardArray = cardArrayProverbs;
             break;
         case "test":
-            cardArray = cardArrayTest;
-            break;
-        case "mySet1":
-        case "mySet2":
         default:
             cardArray = cardArrayTest;
             break;
@@ -32,7 +28,6 @@ function showCardArrayVerses(array) {
       // const result = addVerse()
       // const textInput = result.textInput
       // const referenceInput = result.referenceInput
-
 
       textInput.value = verse.text
       referenceInput.value = verse.reference
@@ -70,13 +65,24 @@ function addVerse(divId = 'createInput') {
 
 
 function pushVerses() {
-    cardArray = [];
     let selectBox = document.getElementById("selectBox");
     let selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    switch (selectedValue) {
+        case "fast":
+            cardArrayFAST = [];
+            break;
+        case "proverbs":
+            cardArrayProverbs = [];
+            break;
+        case "test":
+        default:
+            cardArrayTest = [];
+            break;
+    }
+    
+    
     const kidsList = $("#createInput").children()
     for (const verse of kidsList) {
-        console.log(verse.childNodes[0].value);
-        console.log(verse.childNodes[1].value);
 
         takeReference = verse.childNodes[0].value
         takeText = verse.childNodes[1].value
@@ -93,26 +99,40 @@ function pushVerses() {
         // set card array to the chosen one
         switch (selectedValue) {
             case "fast":
-                cardArray = cardArrayFAST;
+                cardArrayFAST.push(newReference);
+                cardArrayFAST.push(newVerse);
                 break;
             case "proverbs":
-                cardArray = cardArrayProverbs;
+                cardArrayProverbs.push(newReference);
+                cardArrayProverbs.push(newVerse);
                 break;
             case "test":
-                cardArray = cardArrayTest;
+                cardArrayTest.push(newReference);
+                cardArrayTest.push(newVerse);
                 break;
             case "mySet1":
             case "mySet2":
             default:
-                cardArray = cardArrayTest;
+                cardArrayTest.push(newReference);
+                cardArrayTest.push(newVerse);
                 break;
         }
 
-        // add verse to array
-        cardArray.push(newReference);
-        cardArray.push(newVerse);
+        
         // serviceAddVerse(newReference, newVerse)
 
+    }
+    switch (selectedValue) {
+        case "fast":
+            cardArray = cardArrayFAST
+            break;
+        case "proverbs":
+            cardArray = cardArrayProverbs
+            break;
+        case "test":
+        default:
+            cardArray = cardArrayTest
+            break;
     }
     console.log(cardArray);
 

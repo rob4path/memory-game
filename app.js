@@ -1,16 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   registerState()
+  showCardArrayVerses(cardArrayTest)
+  // VARIABLES
 
+  // ON CLICK BUTTONS
   $("#signOutBTN").click(signOut)
   $("#login").click(login)
   $("#register").click(register)
 
-
-
-  // VARIABLES
-
-  // ON CLICK BUTTONS
+  $("#play").click(play)
   $("#onePlayer").click(onePlayer)
   $("#twoPlayers").click(twoPlayers)
   $("#chooseFast").click(chooseFast)
@@ -19,9 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#refreshBtn").click(refresh)
   $("#continueBtn").click(continueGame)
   $("#addVerseBtn").click(function () { addVerse('createInput') })
-  $("#createBoard").click(createBoard)
   $("#pushVerseBtn").click(pushVerses)
-
 
   $("#game-info").css("display", "none")
   $("#refreshContinueBtn").css("display", "none");
@@ -68,14 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#addVerseDiv").css("display", "none")
   $("#addVerseMenu").click(function () {
     $("#addVerseDiv").toggle(500);
-    showCardArrayVerses(cardArrayTest)
+    
   });
-
-
-
-
-
-
 
   const playersModeBtn = document.getElementById("playersModeBtn");
   playersModeBtn.style.display = "none";
@@ -89,34 +79,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const congrats = document.getElementById("congrats");
   const congratsOne = document.getElementById("congratsOne");
 
-
-  let cardsChosen = [];
-  let cardsChosenId = [];
-  let cardsWon = [];
-  let cardsWonPlayer1 = [];
-  let cardsWonPlayer2 = [];
-
-  let playerTurn = "playerOne";
-  let cardsFlipped = 0;
   let playerTurnH3 = document.getElementById("h3playerTurn");
   let twoPlayersScore = document.getElementById("twoPlayersScore");
   let onePlayerScore = document.getElementById("onePlayerScore")
   twoPlayersScore.style.display = "none";
 
-  function playersName() {
-    let playerOneNameInput = document.getElementById("playerOneNameInput").value;
-    let playerTwoNameInput = document.getElementById("playerTwoNameInput").value;
-    let playerOneName = document.getElementById("playerOneName");
-    let TwoPlayerOneName = document.getElementById("TwoPlayerOneName");
-    let TwoPlayerTwoName = document.getElementById("TwoPlayerTwoName");
-
-    playerOneName.innerHTML = playerOneNameInput;
-    TwoPlayerOneName.innerHTML = playerOneNameInput;
-
-    TwoPlayerTwoName.innerHTML = playerTwoNameInput;
-
-
-  }
+  // FUNCTIONS
 
   function clearScore() {
     let clearCards = document.getElementById("grid");
@@ -150,35 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // }
   }
 
-  function changeTurnPlayerOne() {
-    let playerOneNameInput = document.getElementById("playerOneNameInput").value;
-
-    playerTurn = "playerOne";
-    document.getElementById("playerTurn").innerText =
-      `${playerOneNameInput}, it's your turn!`;
-
-    document.getElementById("playerTurn").style.color = "yellow";
-  }
-  function changeTurnPlayerTwo() {
-    let playerTwoNameInput = document.getElementById("playerTwoNameInput").value;
-
-    playerTurn = "playerTwo";
-    document.getElementById("playerTurn").innerText =
-      `${playerTwoNameInput}, it's your turn!`;
-
-    document.getElementById("playerTurn").style.color = "green";
-  }
-  function changeTurn() {
-    if (cardsFlipped === 2) {
-      if (playerTurn === "playerOne") {
-        changeTurnPlayerTwo()
-      } else {
-        changeTurnPlayerOne()
-      }
-
-    }
-  }
-
   function onePlayer() {
     clearBoard();
     clearScore();
@@ -205,9 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
     congrats.innerHTML = " ";
     congratsOne.innerHTML = " ";
   }
-
-  let cardArray = [];
-
   function continueGame() {
     clearBoard();
     shuffleCards();
@@ -236,31 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
     $("#refreshContinueBtn").css("display", "none");
 
   }
-
-  function chooseProverbs() {
-    cardArray = cardArrayProverbs;
-
-  }
-
-  function chooseFast() {
-    cardArray = cardArrayFAST;
-
-  }
-
-  function chooseMore() {
-    cardArray = cardArrayTest;
-    clearBoard();
-    clearScore();
-    createBoard();
-    congrats.style.display = "block";
-    congratsOne.style.display = "block";
-    congrats.innerHTML = " ";
-    congratsOne.innerHTML = " ";
-    $("#refreshContinueBtn").css("display", "none");
-    playersName()
-  }
-
-
 
 
   function createBoard() {
@@ -413,7 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cardsFlipped === 3) {
       const cards = document.querySelectorAll(".card");
       if (cardsChosen[0] !== cardsChosen[1]) {
-      const optionOneId = cardsChosenId[0];
+        const optionOneId = cardsChosenId[0];
         const optionTwoId = cardsChosenId[1];
         imgOptionOne = cards[optionOneId].childNodes[0];
         pOptionOne = cards[optionOneId].childNodes[1];
@@ -449,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  $("#play").click(function () {
+  function play() {
 
     if ($("#playerOneNameInput").val() === "") {
       // alert("Enter Name")
@@ -485,13 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
       $("#game-info").show(800);
       $("#grid").show(800);
     }
-  });
-
-  // prompt('Versetele de la FAST, M2')
-
-
-
-
+  };
 
 
 });

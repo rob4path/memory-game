@@ -7,20 +7,24 @@
   <title>Memory Game</title>
   <link rel="stylesheet" href="style.css">
   </link>
-<link rel="stylesheet" href="alert.css">  </link>
+  <link rel="stylesheet" href="alert.css">
+  </link>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+
+  <script src="variables.js" charset="utf-8"></script>
   <script src="alert.js" charset="utf-8"></script>
   <script src="auth.js" charset="utf-8"></script>
   <script src="card-arrays.js" charset="utf-8"></script>
   <script src="edit-sets.js" charset="utf-8"></script>
-  <!-- <script src="clear.js" charset="utf-8"></script>
-  <script src="change-turn.js" charset="utf-8"></script> -->
+  <!-- <script src="clear.js" charset="utf-8"></script> -->
+  <script src="change-turn.js" charset="utf-8"></script>
+  <!-- <script src="on-click.js" charset="utf-8"></script> -->
   <script src="app.js" charset="utf-8"></script>
- 
+
+
 </head>
 
 <body>
@@ -79,26 +83,25 @@
       <input type="button" class="btn btn2 menu" id="addVerseMenu" value="Add Verses">
       <div id="addVerseDiv">
         <br>
-         <select id="selectBox">
+        <select id="selectBox">
           <option id=" moreOption" value="test">TEST</option>
           <option id="fastOption" value="fast">FAST</option>
           <option id="proverbsOption" value="proverbs">Proverbs</option>
-          <option id="mySet1Option" value="mySet1">MySet1</option>
-          <option id="mySet2Option" value="mySet2">MySet2</option>
+    
         </select>
         <br>
         <div id="createInput"></div>
 
         <br>
-       
-   
-        <input type="button" class="btn btn4" id='addVerseBtn' value="Add new verse">
-        <input type="button" class="btn btn4" id='pushVerseBtn' value="Push verses">
-        <input type="button" class="btn btn4" id='createBoard' value="Create Board">
 
-        </div>
+
+        <input type="button" class="btn btn4" id='addVerseBtn' value="Add new verse">
+        <input type="button" class="btn btn4" id='pushVerseBtn' value="Save">
+
+
       </div>
     </div>
+  </div>
   </div>
   <!-- GAME INFO -->
   <div id="game-info">
