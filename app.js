@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // $(".menu").show();
 
   // HIDE-SHOW TOGGLE MENU
+
+
   $("#home").click(function () {
     $("#menu").show(500)
     $("#auth").hide(500);
@@ -39,11 +41,25 @@ document.addEventListener("DOMContentLoaded", () => {
     $("#refreshContinueBtn").hide(500);
     $("#home").hide(500);
 
+    $("#play").show(500);
+    $("#playersNameInputMenu").show(500);
+    $("#playersModeMenu").show(500);
+    $("#chooseSetMenu").show(500);
+    $("#addVerseMenu").show(500);
+    
   });
 
   $("#auth").css("display", "none")
   $("#loginBTN").click(function () {
     $("#auth").toggle(500);
+      
+      $("#play").hide(500);
+      $("#playersNameInputMenu").hide(500);
+      $("#playersModeMenu").hide(500);
+      $("#chooseSetMenu").hide(500);
+      $("#addVerseMenu").hide(500);
+      
+      $("#home").show(1000)
   });
 
   $("#playersName").css("display", "none")
@@ -106,16 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function clearBoard() {
     let clearCards = document.getElementById("grid");
     clearCards.innerHTML = " ";
-
     congrats.innerText = " ";
-
     cardsFlipped = 0;
-    // playerTurn = "playerOne";
-
-    // let menu = document.getElementById("menu");
-    // while (menu.firstChild) {
-    //   menu.removeChild(menu.firstChild);
-    // }
   }
 
   function onePlayer() {

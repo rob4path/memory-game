@@ -19,21 +19,9 @@
   ];
   let cardArrayTest = [
     {
-      reference: "....",
-      text: ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .... ...... ...... ..... ...... ... .... ....... .. ........................",
-    },
-    {
-      reference: "....",
-      text: ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .. ... ..   ..... .... . ..  . ...... ..............................",
-    },
-    {
-      reference: "OOOO",
-      text: "O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O OOOO  OOOOO O OOOO  OOOO OOOOOO OOO OOOOOOOOOOOOOOOOOOOOOOOOO",
-    },
-    {
-      reference: "OOOO",
-      text: "O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O O  OOOOOOOO  OOOOO OO OOO OOO OO OOOOOOOOOOOOOOOOOOOOOOOOO",
-    },
+      reference: 'Ref' ,
+      text: 'Text',
+    }
   ];
   let cardArrayFAST = [
     {

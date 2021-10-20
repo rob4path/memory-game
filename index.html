@@ -5,15 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Memory Game</title>
-  <link rel="stylesheet" href="style.css">
-  </link>
-  <link rel="stylesheet" href="alert.css">
-  </link>
+
+  <link rel="stylesheet" href="style.css"></link>
+  <link rel="stylesheet" href="alert.css"></link>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-
+  
   <script src="variables.js" charset="utf-8"></script>
   <script src="alert.js" charset="utf-8"></script>
   <script src="auth.js" charset="utf-8"></script>
@@ -21,7 +19,6 @@
   <script src="edit-sets.js" charset="utf-8"></script>
   <!-- <script src="clear.js" charset="utf-8"></script> -->
   <script src="change-turn.js" charset="utf-8"></script>
-  <!-- <script src="on-click.js" charset="utf-8"></script> -->
   <script src="app.js" charset="utf-8"></script>
 
 
@@ -74,9 +71,9 @@
       <!-- CHOOSE SET -->
       <input type="button" class="btn btn2 menu" id="chooseSetMenu" value="Choose Set">
       <div id="chooseSetBtn" class="btnDiv">
-        <input type="button" class="btn btn3" id='chooseFast' value="FAST II">
-        <input type="button" class="btn btn4" id='chooseProverbs' value="Proverbs">
-        <input type="button" class="btn btn4" id='chooseMore' value="TEST">
+        <input type="button" class="btn btn3 chooseSetActive" id='chooseFast' value="FAST II">
+        <input type="button" class="btn btn4 chooseSetActive" id='chooseProverbs' value="Proverbs">
+        <input type="button" class="btn btn4 chooseSetActive" id='chooseMore' value="TEST">
       </div>
 
       <!-- ADD VERSE -->
@@ -87,9 +84,9 @@
           <option id=" moreOption" value="test">TEST</option>
           <option id="fastOption" value="fast">FAST</option>
           <option id="proverbsOption" value="proverbs">Proverbs</option>
-    
+
         </select>
-        <br>
+        
         <div id="createInput"></div>
 
         <br>
@@ -117,15 +114,16 @@
     </div>
   </div>
 
+  
   <div class="btnDiv" id="refreshContinueBtn">
     <input type="button" class="btn btn2" id="refreshBtn" value="Refresh">
     <input type="button" class="btn btn2" id="continueBtn" value="Continue">
   </div>
 
+
   <!-- FLASHCARDS -->
   <div id="grid" class="grid">
   </div>
-  <!-- <input type="button" id='refresh-btn' value="Refresh"> -->
 
 </body>
 

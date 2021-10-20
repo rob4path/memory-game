@@ -14,9 +14,24 @@ body {
   flex-direction: row;
 }
 
+.chooseSetActive {
+  color: #50db34;
+}
+
+.newText {
+   min-width:1px;
+}
 #home {
   position: fixed;
   bottom: 7px;
+}
+#loginBTN, #singOutBTN {
+  position: fixed;
+  right: 7px;
+}
+
+#play {
+  background-color: green;
 }
 
                           /* TEXTs & FONTs */
