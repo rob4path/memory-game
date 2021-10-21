@@ -13,11 +13,10 @@ body {
   display: flex;
   flex-direction: row;
 }
-
-.chooseSetActive {
-  color: #50db34;
+#auth {
+  text-align: center;
+  vertical-align: auto;
 }
-
 .newText {
    min-width:1px;
 }
@@ -25,13 +24,14 @@ body {
   position: fixed;
   bottom: 7px;
 }
-#loginBTN, #singOutBTN {
+/* #loginBTN, #signOutBTN {
   position: fixed;
   right: 7px;
-}
+} */
 
 #play {
   background-color: green;
+  border: 2px solid green;
 }
 
                           /* TEXTs & FONTs */
@@ -50,7 +50,7 @@ body {
     display: flex;
     flex-direction: column;
     align-content: center;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
     flex-wrap: wrap;
     color: white;
@@ -191,48 +191,15 @@ h3 {
 
 .btn3:hover,
 .btn4:hover {
-  color: #3498db;
+  /* font-weight: bolder; */
+  border: 2px solid green;
 }
-.btn::before {
-  content: " ";
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 0%;
-  background: #50db34;
-  z-index: -1;
-  transition: 0.8s;
-}
-.btn1::before,
-.btn3::before {
-  top: 0;
-  border-radius: 0 0 50% 50%;
-}
-.btn3:active {
-  color: red;
-}
-.btn3:visited {
-  color: rgb(72, 255, 0);
-}
-.btn3:focus {
-  color: rgb(255, 0, 221);
-}
-.btn2::before,
-.btn4::before {
-  bottom: 0;
-  border-radius: 50% 50% 0 0;
-}
-.btn3::before,
-.btn4::before {
-  height: 180%;
-}
-.btn1:hover::before,
-.btn2:hover::before {
-  height: 180%;
-}
-.btn3:hover::before,
-.btn4:hover::before {
-  height: 0%;
+
+
+.chooseSetActive {
+  background-color: green;
+  font-weight: bolder;
+  border: 2px solid green;
 }
 
 @media screen and (max-width: 659px) {

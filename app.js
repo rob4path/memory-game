@@ -24,63 +24,78 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#home").css("display", "none")
   $("#pushVerseBtn").css("display", "none")
   $("#selectBox").change(changeSet)
+
+  $("#onePlayer").addClass("chooseSetActive")
   // $(".menu").show();
 
   // HIDE-SHOW TOGGLE MENU
 
 
-  $("#home").click(function () {
-    $("#menu").show(500)
-    $("#auth").hide(500);
-    $("#playersName").hide(500);
-    $("#playersModeBtn").hide(500);
-    $("#chooseSetBtn").hide(500);
-    $("#addVerseDiv").hide(500);
-    $("#game-info").hide(500);
-    $("#grid").hide(500);
-    $("#refreshContinueBtn").hide(500);
-    $("#home").hide(500);
+  $("#home").click(home)
 
-    $("#play").show(500);
-    $("#playersNameInputMenu").show(500);
-    $("#playersModeMenu").show(500);
-    $("#chooseSetMenu").show(500);
-    $("#addVerseMenu").show(500);
-    
-  });
+  function home() {
+    $("#menu").show(200)
+    $("#auth").hide(200);
+    $("#playersName").hide(200);
+    $("#playersModeBtn").hide(200);
+    $("#chooseSetBtn").hide(200);
+    $("#addVerseDiv").hide(200);
+    $("#game-info").hide(200);
+    $("#grid").hide(200);
+    $("#refreshContinueBtn").hide(200);
+    $("#home").hide(200);
+    $("#loginBTN").show(200);
+
+    $("#play").show(200);
+    $("#settings").show(200)
+    $("#addVerseMenu").show(200);
+
+  };
 
   $("#auth").css("display", "none")
   $("#loginBTN").click(function () {
-    $("#auth").toggle(500);
-      
-      $("#play").hide(500);
-      $("#playersNameInputMenu").hide(500);
-      $("#playersModeMenu").hide(500);
-      $("#chooseSetMenu").hide(500);
-      $("#addVerseMenu").hide(500);
-      
-      $("#home").show(1000)
+    $("#auth").toggle(200);
+
+    $("#play").hide(200);
+    // $("#playersNameInputMenu").hide(200);
+    // $("#playersModeMenu").hide(200);
+    // $("#chooseSetMenu").hide(200);
+    $("#addVerseMenu").hide(200);
+
+    $("#home").show(1000)
   });
 
   $("#playersName").css("display", "none")
-  $("#playersNameInputMenu").click(function () {
-    $("#playersName").toggle(500);
-  });
-
   $("#playersModeBtn").css("display", "none")
+  $("#chooseSetBtn").css("display", "none")
+
+  $("#settings").click(settings)
+
+  function settings() {
+    $("#playersName").show(200);
+    $("#playersModeBtn").show(200);
+    $("#chooseSetBtn").show(200);
+    $("#play").hide(200);
+    $("#addVerseMenu").hide(200);
+    $("#loginBTN").hide(200)
+    $("#auth").hide(200);
+    $("#settings").hide(200)
+    $("#home").show(500)
+
+  };
+
+
   $("#playersModeMenu").click(function () {
-    $("#playersModeBtn").toggle(500);
+
   });
 
-  $("#chooseSetBtn").css("display", "none")
   $("#chooseSetMenu").click(function () {
-    $("#chooseSetBtn").toggle(500);
   });
 
   $("#addVerseDiv").css("display", "none")
   $("#addVerseMenu").click(function () {
-    $("#addVerseDiv").toggle(500);
-    
+    $("#addVerseDiv").toggle(200);
+
   });
 
   const playersModeBtn = document.getElementById("playersModeBtn");
@@ -138,6 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
     onePlayerScore.style.display = "contents";
     congrats.innerHTML = " ";
     congratsOne.innerHTML = " ";
+    $("#onePlayer").addClass("chooseSetActive")
+    $("#twoPlayers").removeClass("chooseSetActive")
 
   }
 
@@ -151,6 +168,8 @@ document.addEventListener("DOMContentLoaded", () => {
     onePlayerScore.style.display = "none";
     congrats.innerHTML = " ";
     congratsOne.innerHTML = " ";
+    $("#onePlayer").removeClass("chooseSetActive")
+    $("#twoPlayers").addClass("chooseSetActive")
   }
   function continueGame() {
     clearBoard();
@@ -164,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsFlipped = 0;
     cardsChosen = [];
     cardsChosenId = [];
-  
+
   }
   function refresh() {
     clearBoard();
@@ -370,7 +389,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if ($("#playerOneNameInput").val() === "") {
       // alert("Enter Name")
-      $("#playersName").show(500)
+      $("#playersName").show(200)
       alertify.set({ delay: 5000 });
       alertify.error("Please enter your name!");
       $("#playerOneNameInput").val("Nobody 1");
@@ -381,7 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cardArray !== cardArrayTest &&
       cardArray !== cardArrayFAST) {
       // alert("Choose set")
-      $("#chooseSetBtn").show(500)
+      $("#chooseSetBtn").show(200)
       alertify.set({ delay: 5000 });
       alertify.error("Please choose a set!");
 
