@@ -55,8 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#auth").css("display", "none")
   $("#loginBTN").click(function () {
     $("#auth").toggle(200);
-
+    $("#settings").hide(200);
     $("#play").hide(200);
+    $("#loginBTN").hide(200);
     // $("#playersNameInputMenu").hide(200);
     // $("#playersModeMenu").hide(200);
     // $("#chooseSetMenu").hide(200);
